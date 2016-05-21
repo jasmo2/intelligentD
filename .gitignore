@@ -5,3 +5,5 @@ server/handlers/__pycache__/
 venv
 *.pyc
 *.pyo
+.tags
+.tags1
