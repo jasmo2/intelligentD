@@ -7,7 +7,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/static/css/style.css" rel="stylesheet">
+  <link href="/static/css/styleD.css" rel="stylesheet">
+
+  <!-- Bootstrap Core CSS -->
+  <link href="/static/agency/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="/static/agency/css/agency.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="/static/agency/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
 
   <style type="text/css">
     header {
@@ -30,7 +44,7 @@
     <nav class="collapse navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
         <li>
-          <a href="#/help">Analisis</a>
+          <a href="#/analisis">Analisis</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -47,10 +61,57 @@
   </div>
 </header>
 
-<div class="container">
+<!-- Services Section -->
+<section>
+  <div class="container">
     <ng-view></ng-view>
+  </div>
+</section>
 
-</div>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <span class="copyright">Copyright &copy; Your Website 2014</span>
+      </div>
+      <div class="col-md-4">
+        <ul class="list-inline social-buttons">
+          <li><a href="#"><i class="fa fa-twitter"></i></a>
+          </li>
+          <li><a href="#"><i class="fa fa-facebook"></i></a>
+          </li>
+          <li><a href="#"><i class="fa fa-linkedin"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <ul class="list-inline quicklinks">
+          <li><a href="#">Privacy Policy</a>
+          </li>
+          <li><a href="#">Terms of Use</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- jQuery -->
+<script src="/static/agency/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/static/agency/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="/static/agency/js/classie.js"></script>
+<script src="/static/agency/js/cbpAnimatedHeader.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="/static/agency/js/jqBootstrapValidation.js"></script>
+<script src="/static/agency/js/contact_me.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/static/agency/js/agency.js"></script>
 
 <!-- angualr code from cdn -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
@@ -58,15 +119,13 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-sanitize.js"></script>
 <!-- ui.bootstrap from cdn -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.js"></script>
-
+<script src="/static/js/ui-bootstrap-tpls.js"></script>
 
 <!-- App Code and controllers -->
 <script src="/static/js/app.js"></script>
 <script src="/static/js/config.js"></script>
 <script src="/static/js/services.js"></script>
 <script src="/static/js/controllers.js"></script>
-
 
 </body>
 </html>

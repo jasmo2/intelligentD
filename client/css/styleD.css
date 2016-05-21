@@ -1,3 +1,6 @@
+section{
+    padding:5px!important;
+}
 .contenedor-analisis{
     border-radius: 5px;
 }
@@ -22,4 +25,20 @@
 .contenedor-grafica-resultado{
     border-radius: 5px;
     border: 1px solid #E7E7E7;
+}
+.contenedor-seccion{
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 5px 5px #dddddd;
+}
+.titulo-secciones{
+    background: #FED136;
+    border-radius: 10px;
+    padding:5px;
+    text-align: center;
+    box-shadow: 1px 1px 5px #ddd;
+}
+.titulo-secciones h2{
+    padding:0px!important;
+    margin: 0px!important;
 }
