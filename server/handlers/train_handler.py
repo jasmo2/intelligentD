@@ -39,6 +39,6 @@ class TrainHandler(tornado.web.RequestHandler):
         except Exception as e:
             self.write(dumps({'status': 500, 'error': str(e)}))
 
-        print("Prediction csv uploaded, cname{}".format(cname))
+        print("Train csv uploaded, cname{}".format(cname))
 
 
