@@ -7,6 +7,7 @@ angular.module('mat.app').config(['$routeProvider',
         templateUrl: '/static/partials/home.html',
         controller: 'HomeController'
       })
+<<<<<<< Updated upstream
       .when('/about', {
         templateUrl: '/static/partials/about.html',
         controller: 'AboutController'
@@ -34,6 +35,11 @@ angular.module('mat.app').config(['$routeProvider',
       .when('/analisys', {
         templateUrl: '/static/partials/analisys.html',
         controller: 'HelpController'
+=======
+      .when('/analysis', {
+        templateUrl: '/static/partials/analysis.html',
+        controller: 'AnalysisController'
+>>>>>>> Stashed changes
       })
   }
 ]);

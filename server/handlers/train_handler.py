@@ -8,6 +8,8 @@ import os
 from bson.objectid import ObjectId
 from bson.json_util import dumps, loads
 
+from datamining.datamining import analyse, executeModel
+
 class TrainHandler(tornado.web.RequestHandler):
     def initialize(self, db):
         """
@@ -35,6 +37,7 @@ class TrainHandler(tornado.web.RequestHandler):
         fh.write(fileinfo['body'])
         try:
             self._db['decision'].insert({"train_csv": cname})
+
             self.write({'status': 200, 'error': '', 'train_csv': cname})
         except Exception as e:
             self.write(dumps({'status': 500, 'error': str(e)}))

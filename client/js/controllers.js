@@ -116,9 +116,22 @@ angular.module('mat.app')
   ]
 )
 
-  .controller('HelpController', ['$scope',
-    function ($scope) {
-      $scope.controllerName = 'HelpController';
+  .controller('AnalysisController', ['$scope','$http','$log',
+    function ($scope,$http,$log) {
+      $scope.controllerName = 'AnalysisController';
+      var scope = $scope;
+      $scope.uploadTrainSet = function () {
+        var data = new FormData();
+        data.append('file', file);
+        debugger
+        $http.post('/train_upload',data)
+          .then(function(response) {
+            $log.info(response.data);
+          },function(err){
+            $log.error(err);
+
+          });
+      }
     }
   ]
 )

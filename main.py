@@ -13,6 +13,7 @@ sys.path.insert(0, './server')
 
 from handlers.index_handler import IndexHandler
 from handlers.train_handler import TrainHandler
+from handlers.prediction_handler import PredictionHandler
 from handlers.test_handler import TestHandler
 
 
@@ -69,6 +70,7 @@ static_path = options.static_path
 app = tornado.web.Application([
       (r'/', IndexHandler),
       (r'/train_upload', TrainHandler,dict(db=db)),
+      (r'/prediction_upload', PredictionHandler,dict(db=db)),
       (r'/test', TestHandler)
     #   (r'/prediction_upload', PredictionHandler,dict(db=db))
       #api prefix means that we load json data
