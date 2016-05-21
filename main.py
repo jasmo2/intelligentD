@@ -13,7 +13,7 @@ sys.path.insert(0, './server')
 
 from handlers.index_handler import IndexHandler
 from handlers.train_handler import TrainHandler
-
+from handlers.test_handler import TestHandler
 
 
 #adding local directory to path
