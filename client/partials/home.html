@@ -1,11 +1,7 @@
 <h3>Home</h3>
-
-<a href="#blog/add">Create Blog</a>
-<div ng-repeat="blog in blogs"></div>
-
-<table class="table">
-  <tr ng-repeat="blog in blogs">
-    <td><a href="#/blog/{{blog.slug}}"> {{blog.name}}</a></td>
-    <td>{{blog.description}}</td>
-  </tr>
-</table>
+<form enctype="multipart/form-data" action="/train_upload" method="post">
+		File: <input type="file" name="train_csv" />
+		<br />
+		<br />
+		<input type="submit" value="upload" />
+</form>
