@@ -15,13 +15,12 @@
     <div class="col-xs-12">
       <div class="contenedor-modelo col-xs-12">
         <div class="col-xs-6">
-          <form name="form" class="form-item center" novalidate>
             <label class="item item-input item-floating-label">
               <span class="input-label">Data</span>
-              <input ng-model="model.train" type="file" name="train_csv" />
+              <input type = "file" file-model = "myFile"/>
             </label>
-            <button ng-click="uploadTrainSet()" type="submit" class="button button-positive">Generar Modelo</button>
-          </form>
+            <button ng-click = "uploadTrainSet()">Generar Modelo</button>
+
         </div>
         <div class="col-xs-6">
           <div ng-if="">Ok</div>

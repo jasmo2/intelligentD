@@ -7,130 +7,18 @@ angular.module('mat.app')
     }
   ]
 )
-  .controller('BlogAddController', ['$scope', '$location', 'Blog',
-    function ($scope, $location, Blog) {
-      $scope.error = '';
-      $scope.blog = {
-        name: '',
-        description: '',
-        tags: ''
-      };
-      $scope.save = function () {
-        //is the new blog valid
-        if (!$scope.blog.name) {
-          $scope.error = 'Blog name is mandatory';
-          return false;
-        } else {
-          $scope.error = '';
-        }
-        var blog = new Blog($scope.blog);
-        blog.$save(function (response) {
-          console.log(response);
-          if (response.status == 0) {
-            //$location.path('/blog/' + response.slug);
-            $location.path('/');
-          } else {
-            $scope.error = response.error;
-          }
-        });
-      };
-    }
-  ]
-)
-  .controller('BlogEditController', ['$scope', '$location', 'Blog',
-    function ($scope, Blog) {
-      $scope.error = '';
-      $scope.blog = Blog.get({_id: $route.current.params.slug});
-      $scope.save = function () {
-        $scope.blog.$update(function (response) {
-          if (response.status == 0) {
-            $location.path('/blog/' + response.slug);
-          } else {
-            $scope.error = response.error;
-          }
-        });
-      };
-    }
-  ]
-)
-  .controller('BlogViewController', ['$scope', '$route', 'Blog',
-    function ($scope, $route, Blog) {
-      console.log($route.current.params.slug);
-      $scope.error = '';
-      $scope.blog = Blog.get({slug: $route.current.params.slug}, function () {
-        console.log($scope.blog);
-      });
-    }
-  ]
-)
 
-  .controller('EntryViewController', ['$scope', '$route', 'Entry',
-    function ($scope, $route, Entry) {
-      console.log($route.current.params.slug);
-      console.log($route.current.params.idx);
-      $scope.error = '';
-      $scope.entry = Entry.get({slug: $route.current.params.slug,
-        idx: $route.current.params.idx}, function () {
-        console.log($scope.entry);
-      });
-    }
-  ]
-)
 
-  .controller('EntryAddController', ['$scope', '$route','$location', 'Entry',
-    function ($scope, $route,$location, Entry) {
-      console.log('EntryAddController');
-      $scope.slug = $route.current.params.slug;
-      console.log($route.current.params.slug);
-      $scope.entry = {
-        slug:$scope.slug,
-        title: '',
-        body: '',
-        tags: ''
-      };
 
-      $scope.save = function () {
-        //is the new entry valid
-        if (!$scope.entry.title) {
-          $scope.error = 'Entry title is mandatory';
-          return false;
-        } else if (!$scope.entry.body){
-          $scope.error = 'Entry body is mandatory';
-          return false;
-        }
-        else{
-          $scope.error = '';
-        }
-        var entry = new Entry($scope.entry);
-        entry.$save(function (response) {
-          console.log(response);
-          if (response.status == 0) {
-            //$location.path('/blog/' + response.slug);
-            $location.path('/blog/'+$scope.slug);
-          } else {
-            $scope.error = response.error;
-          }
-        });
-      };
-    }
-  ]
-)
-
-  .controller('AnalysisController', ['$scope','$http','$log',
-    function ($scope,$http,$log) {
+  .controller('AnalysisController', ['$scope','$http','$log','fileUpload',
+    function ($scope,$http,$log,fileUpload) {
       $scope.controllerName = 'AnalysisController';
       var scope = $scope;
       $scope.uploadTrainSet = function () {
-        var data = new FormData();
-        data.append('file', file);
-        debugger
-        $http.post('/train_upload',data)
-          .then(function(response) {
-            $log.info(response.data);
-          },function(err){
-            $log.error(err);
-
-          });
+        var file = $scope.myFile;
+        $log.log('file is ' );
+        console.dir(file);
+        fileUpload.uploadFileToUrl(file, "/train_upload");
       }
     }
   ]
