@@ -7,39 +7,9 @@ angular.module('mat.app').config(['$routeProvider',
         templateUrl: '/static/partials/home.html',
         controller: 'HomeController'
       })
-<<<<<<< Updated upstream
-      .when('/about', {
-        templateUrl: '/static/partials/about.html',
-        controller: 'AboutController'
-      })
-      .when('/blog/add', {
-        templateUrl: '/static/partials/blog_edit.html',
-        controller: 'BlogAddController'
-      })
-      .when('/blog/:slug', {
-        templateUrl: '/static/partials/blog.html',
-        controller: 'BlogViewController'
-      })
-      .when('/entry/:idx/:slug', {
-        templateUrl: '/static/partials/entry.html',
-        controller: 'EntryViewController'
-      })
-      .when('/add_entry/:slug', {
-        templateUrl: '/static/partials/entry_edit.html',
-        controller: 'EntryAddController'
-      })
-      .when('/help', {
-        templateUrl: '/static/partials/help.html',
-        controller: 'HelpController'
-      })
-      .when('/analisys', {
-        templateUrl: '/static/partials/analisys.html',
-        controller: 'HelpController'
-=======
       .when('/analysis', {
         templateUrl: '/static/partials/analysis.html',
         controller: 'AnalysisController'
->>>>>>> Stashed changes
       })
   }
 ]);
