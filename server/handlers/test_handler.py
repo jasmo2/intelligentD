@@ -6,6 +6,7 @@ import os
 from tornado.options import options
 from datamining.datamining import analyse, executeModel
 import numpy as np
+import csv
 
 class TestHandler(web.RequestHandler):
     def get(self):
@@ -21,4 +22,12 @@ class TestHandler(web.RequestHandler):
 
         prediction = executeModel(res['modelo'], X[4:5])
         # self.render("index_path")
+
+
+        with open('eggs.csv', 'w', newline='') as csvfile:
+            spamwriter = csv.writer(csvfile, delimiter=', ',
+                                    quoting=csv.QUOTE_MINIMAL)
+            spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
+            spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
+
         self.write(str(res['cossvalidation']) + str(prediction))
