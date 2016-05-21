@@ -3,6 +3,8 @@ csv handler will query,get,add and delete file reference.
 """
 import tornado
 import pandas
+import uuid
+import os
 from bson.objectid import ObjectId
 from bson.json_util import dumps, loads
 
@@ -13,7 +15,7 @@ class TrainHandler(tornado.web.RequestHandler):
         :param db: an instance to pymongo database object
         """
         self._db = db
-
+        self._tmp = os.path.dirname(os.path.dirname(os.path.realpath(__file__))) + "/tmp/"
 
     def post(self):
         """
@@ -24,16 +26,19 @@ class TrainHandler(tornado.web.RequestHandler):
         #     self.write(dumps({'status':-1,'error':'name is mandatory'}))
         #     return
 
-        fileinfo = self.request.files['train_csvtrain_csv'][0]
-        print ("fileinfo is", fileinfo)
+        fileinfo = self.request.files['train_csv'][0]
+        print("fileinfo is", fileinfo)
         fname = fileinfo['filename']
-        fileinfo['body']
-        print("Prediction csv uploaded")
-
-
-
+        extn = os.path.splitext(fname)[1]
+        cname = str(uuid.uuid4()) + extn
+        fh = open(self._tmp + cname, 'wb')
+        fh.write(fileinfo['body'])
         try:
-            self._db['model'].insert(train)
-            self.write({'status':0,'error':'','slug':blog['slug']})
+            self._db['decision'].insert({"model": cname})
+            self.write({'status': 0, 'error': '', 'reference': cname})
         except Exception as e:
-            self.write(dumps({'status':-2,'error':str(e)}))
+            self.write(dumps({'status': -2, 'error': str(e)}))
+
+        print("Prediction csv uploaded, cname{}".format(cname))
+
+
