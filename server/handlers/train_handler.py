@@ -34,10 +34,10 @@ class TrainHandler(tornado.web.RequestHandler):
         fh = open(self._tmp + cname, 'wb')
         fh.write(fileinfo['body'])
         try:
-            self._db['decision'].insert({"model": cname})
-            self.write({'status': 0, 'error': '', 'reference': cname})
+            self._db['decision'].insert({"train_csv": cname})
+            self.write({'status': 200, 'error': '', 'train_csv': cname})
         except Exception as e:
-            self.write(dumps({'status': -2, 'error': str(e)}))
+            self.write(dumps({'status': 500, 'error': str(e)}))
 
         print("Prediction csv uploaded, cname{}".format(cname))
 
