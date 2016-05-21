@@ -33,6 +33,13 @@ class TrainHandler(tornado.web.RequestHandler):
         cname = str(uuid.uuid4()) + extn
         fh = open(self._tmp + cname, 'wb')
         fh.write(fileinfo['body'])
+        fh.close()
+        with open(self._tmp + cname,'r') as f:
+            for x in f:
+                x = x.rstrip()
+                print(x)
+                if not x: continue
+
         try:
             self._db['decision'].insert({"train_csv": cname})
             self.write({'status': 200, 'error': '', 'train_csv': cname})
@@ -40,5 +47,3 @@ class TrainHandler(tornado.web.RequestHandler):
             self.write(dumps({'status': 500, 'error': str(e)}))
 
         print("Train csv uploaded, cname{}".format(cname))
-
-
