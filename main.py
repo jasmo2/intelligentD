@@ -12,7 +12,9 @@ from tornado import ioloop, web
 sys.path.insert(0, './server')
 
 from handlers.index_handler import IndexHandler
-from handlers.test_handler import TestHandler
+from handlers.train_handler import TrainHandler
+
+
 
 #adding local directory to path
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
@@ -49,7 +51,6 @@ def init_db(db):
         db.create_collection('decision')
     except:
         pass
-    db['decision'].ensure_index('slug', unique=True)
     db['decision'].ensure_index('_id', unique=True)
     try:
         db.create_collection('user')
@@ -63,19 +64,18 @@ def init_db(db):
     db['user'].ensure_index('_id', unique=True)
 
 
-if options.mobile_version:
-    static_path = options.mobile_static_path
-else:
-    static_path = options.static_path
+static_path = options.static_path
 
 app = tornado.web.Application([
-                          (r'/', IndexHandler),
-                          #api prefix means that we load json data
-
-                          (r'/test', TestHandler)
-                      ],
-                      static_path=static_path,
-                      autoreload=True
+      (r'/', IndexHandler),
+      (r'/train_upload', TrainHandler,dict(db=db)),
+      (r'/test', TestHandler)
+    #   (r'/prediction_upload', PredictionHandler,dict(db=db))
+      #api prefix means that we load json data
+    ],
+    static_path=static_path,
+    autoreload=True,
+    debug=True
 )
 
 if __name__ == '__main__':

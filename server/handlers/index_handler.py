@@ -17,3 +17,5 @@ class IndexHandler(web.RequestHandler):
         else:
             index_path = os.path.join(options.templates_dir,'index.html')
         self.render(index_path)
+
+

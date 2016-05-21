@@ -31,5 +31,9 @@ angular.module('mat.app').config(['$routeProvider',
         templateUrl: '/static/partials/help.html',
         controller: 'HelpController'
       })
+      .when('/analisis', {
+        templateUrl: '/static/partials/analisis.html',
+        controller: 'HelpController'
+      })
   }
 ]);
