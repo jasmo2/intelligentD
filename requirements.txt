@@ -1,0 +1,5 @@
+pymongo==3.2.2
+python-slugify==1.2.0
+six==1.10.0
+tornado==4.3
+Unidecode==0.4.19
