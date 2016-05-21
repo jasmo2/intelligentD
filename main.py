@@ -12,7 +12,7 @@ from tornado import ioloop, web
 sys.path.insert(0, './server')
 
 from handlers.index_handler import IndexHandler
-
+from handlers.test_handler import TestHandler
 
 #adding local directory to path
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
@@ -69,9 +69,10 @@ else:
     static_path = options.static_path
 
 app = tornado.web.Application([
-                          (r'/', IndexHandler)
+                          (r'/', IndexHandler),
                           #api prefix means that we load json data
 
+                          (r'/test', TestHandler)
                       ],
                       static_path=static_path,
                       autoreload=True
