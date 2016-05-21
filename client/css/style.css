@@ -1,0 +1,25 @@
+.contenedor-analisis{
+    border-radius: 5px;
+}
+.contenedor-pasos{
+    display: block;
+    overflow: auto;
+}
+.contenedor-pasos .pasos-left{
+    border: 1px solid #E7E7E7;
+    padding:5px;
+    border-radius: 5px;
+}
+.contenedor-pasos .pasos-right{
+    border: 1px solid #E7E7E7;
+    padding:5px;
+    border-radius: 5px;
+}
+.contenedor-modelo{
+    border-radius: 5px;
+    border: 1px solid #E7E7E7;
+}
+.contenedor-grafica-resultado{
+    border-radius: 5px;
+    border: 1px solid #E7E7E7;
+}

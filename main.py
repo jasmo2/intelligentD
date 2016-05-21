@@ -69,12 +69,11 @@ else:
     static_path = options.static_path
 
 app = tornado.web.Application([
-                          (r'/', IndexHandler)
-                          #api prefix means that we load json data
-
-                      ],
-                      static_path=static_path,
-                      autoreload=True
+    (r'/', IndexHandler)
+],
+    static_path=static_path,
+    autoreload=True,
+    debug=True
 )
 
 if __name__ == '__main__':
