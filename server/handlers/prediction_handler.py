@@ -39,12 +39,18 @@ class PredictionHandler(tornado.web.RequestHandler):
         cursor = self._db['decision'].find_one({"fname": 1})
         prediction = executeModel(cursor['model'], X)
 
-    
+        dataf = pandas.DataFrame(data=prediction, columns=["target"])
+        dataf.to_csv('predictions.csv')
 
-        try:
-            self._db['decision'].insert({"prediction_csv": cname})
-            self.write({'status': 200, 'error': '', 'prediction_csv': cname})
-        except Exception as e:
-            self.write(dumps({'status': 500, 'error': str(e)}))
+        ifile  = open("predictions.csv", "r")
+        self.set_header ('Content-Type', 'text/csv')
+        self.set_header ('Content-Disposition', 'attachment; filename='+"prediction.csv"+'')
+        self.write (ifile.read())
 
-        print("Prediction csv uploaded, cname{}".format(cname))
+        # try:
+        #     self._db['decision'].insert({"prediction_csv": cname})
+        #     self.write({'status': 200, 'error': '', 'prediction_csv': cname})
+        # except Exception as e:
+        #     self.write(dumps({'status': 500, 'error': str(e)}))
+        #
+        # print("Prediction csv uploaded, cname{}".format(cname))
