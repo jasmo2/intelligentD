@@ -26,6 +26,7 @@ angular.module('mat.app')
             dropzoneConfig: {
                 'options': {
                     'url': 'train_upload',
+                    'acceptedFiles': '.csv',
                     'dictDefaultMessage': 'Soltar archivo o seleccionar archivo .csv'
                 },
                 'eventHandlers': {
