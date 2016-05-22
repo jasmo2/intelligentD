@@ -7,7 +7,6 @@ import uuid
 import os
 from bson.objectid import ObjectId
 from bson.json_util import dumps, loads
-from datamining.datamining import analyse, executeModel
 
 from datamining.datamining import analyse, executeModel
 

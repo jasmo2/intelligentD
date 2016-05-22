@@ -14,26 +14,32 @@ angular.module('mat.app')
     function ($scope,$http,$log,fileUpload) {
       $scope.controllerName = 'AnalysisController';
       var scope = $scope;
-        $scope.uno = False;
-        $scope.dos = Fase;
-        $scope.tres = Fase;
-        $scope.uploadTrainSet = function () {
-        var file = $scope.myFile;
-        $log.log('file is ' );
-        console.dir(file);
-        fileUpload.uploadFileToUrl(file, "/train_upload",function(response){
-            $scope.modelError = response['data']['error']
-            $scope.modelGenerated = true;
+        $scope.uno = false;
+        $scope.dos = true;
+        $scope.tres = false;
+        // "/train_upload"
+        angular.extend($scope,$log, {
+            newGallery: {},
+            errorDiv: false,
+            errorMessages: [],
+            singleGallery: {},
+            dropzoneConfig: {
+                'options': {
+                    'url': 'train_upload'
+                },
+                'eventHandlers': {
+                    'sending': function(file, xhr, formData) {
+                        $log.info("sending")
+                    },
+                    'success': function(file, response) {
+                        $log.info("success")
+                    }
+
+                }
+            }
         });
-      };
-      $scope.predictValues = function () {
-        var file = $scope.predictFile;
-        $log.log('file is ' );
-        console.dir(file);
-        fileUpload.uploadFileToUrl(file, "/prediction_upload",function(response){
-           
-        });
-      }
+
+      
     $scope.isModelGenerated = function(){
         if ($scope.modelGenerated){
               return true;
