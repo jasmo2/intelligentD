@@ -12,7 +12,7 @@ angular.module('mat.app')
            })
           .then(function(response) {
               $log.info(response.data);
-              callback;
+              callback(response);
           },function(err){
             $log.error(err);
 
