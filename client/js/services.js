@@ -5,8 +5,11 @@ angular.module('mat.app')
       this.uploadFileToUrl = function(file, uploadUrl){
          var fd = new FormData();
          fd.append('file', file);
-         debugger
-         $http.post(uploadUrl,fd)
+
+         $http.post(uploadUrl,fd,{
+              transformRequest: angular.identity,
+              headers: {'Content-Type': undefined}
+           })
           .then(function(response) {
             $log.info(response.data);
           },function(err){

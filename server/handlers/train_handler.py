@@ -28,7 +28,7 @@ class TrainHandler(tornado.web.RequestHandler):
         #     self.write(dumps({'status':-1,'error':'name is mandatory'}))
         #     return
 
-        fileinfo = self.request.files['train_csv'][0]
+        fileinfo = self.request.files['file'][0]
         print("fileinfo is", fileinfo)
         fname = fileinfo['filename']
         extn = os.path.splitext(fname)[1]
