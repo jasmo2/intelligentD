@@ -18,10 +18,11 @@ angular.module('mat.app')
                 $scope.dos = false;
                 $scope.tres = false;
 
-                var firstToSecondStep = function () {
+                var firstToSecondStep = function (modelError) {
                     $scope.$apply(function () {
                         $scope.uno = false;
                         $scope.dos = true;
+                        $scope.modelError = Math.floor(modelError*100);
                     });
                 };
                 // "/train_upload"
@@ -42,7 +43,7 @@ angular.module('mat.app')
                             },
                             'success': function(file, response) {
                                 $rootScope.train_csv = response.train_csv;
-                                firstToSecondStep();
+                                firstToSecondStep(response.error);
                                 $log.info("success Upload");
                                 $rootScope.$broadcast('initializePredictionUploader');
                             }
@@ -72,6 +73,11 @@ angular.module('mat.app')
             function ($rootScope,$scope,$http,$log,fileUpload) {
                 var scope = $scope;
                 // "/train_upload"
+                scope.$on('initializePredictionUploader',function () {
+                    scope.$apply(function () {
+                        scope.train_csv
+                    });
+                });
                  angular.extend($scope,$log, {
                         newGallery: {},
                         errorDiv: false,
