@@ -16,8 +16,8 @@
       <span class="glyphicon glyphicon-share-alt icono-paso" aria-hidden="true"></span>
     </div>
     <div class="col-xs-3">
-      <div class="contenedor-paso" ng-class="{circuloPasoActivo: dos}">
-        <div class="circuloPaso">
+      <div class="contenedor-paso" >
+        <div class="circuloPaso" ng-class="{circuloPasoActivo: dos}">
           2
         </div>
         <div class="texto-paso">
@@ -29,8 +29,8 @@
       <span class="glyphicon glyphicon-share-alt icono-paso" aria-hidden="true"></span>
     </div>
     <div class="col-xs-3">
-      <div class="contenedor-paso" ng-class="{circuloPasoActivo: tres}">
-        <div class="circuloPaso">
+      <div class="contenedor-paso" >
+        <div class="circuloPaso" ng-class="{circuloPasoActivo: tres}">
           3
         </div>
         <div class="texto-paso">
@@ -40,7 +40,7 @@
     </div>
   </div>
   <br></br>
-  <div>
+  <div ng-show="uno">
     <div class="titulo-secciones">
         <div class="circuloPaso circulo-en-titulo">
             1
@@ -61,21 +61,50 @@
     </div>
   </div>
 
-  <br></br>
-  <div class="contenedor-resultado-analisis row">
-    <div class="col-xs-12">
-      <div class="col-xs-12 contenedor-grafica-resultado resultados">
-        Resultados
-      </div>
-      <div class="col-xs-12 contenedor-grafica-resultado">
-        <div class="col-xs-12">
-          Esta es mi grafica
-        </div>
-        <div class="col-xs-12">
-          <button class="btn btn-success">Descargar</button>
-        </div>
-        <br></br><br></br>
+  <div ng-show="dos">
+    <div class="titulo-secciones">
+        <div class="circuloPaso circulo-en-titulo">
+            2
+          </div>
+      <h2 class="section-heading titulo-paso">Selecciona el archivo a predecir</h2>
+    </div>
+    <div class="modeloListo">
+      Modelo listo <span class="glyphicon glyphicon-ok modelo-listo" aria-hidden="true"></span>
+    </div>
+
+    <div class="contenedor-analisis row">
+      <div class="col-xs-12">
+          <form action="/file-upload"
+                class="dropzone drop-zone"
+                id="my-awesome-dropzone" dropzone="dropzoneConfig">
+          </form>
+
+          <div class="col-xs-2">
+          </div>
+          <div class="col-xs-4">
+          </div>
       </div>
     </div>
   </div>
-</div>
+
+  <div ng-show="tres">
+    <div class="titulo-secciones">
+        <div class="circuloPaso circulo-en-titulo">
+            3
+          </div>
+      <h2 class="section-heading titulo-paso">Predicción de resultados</h2>
+    </div>
+    <div class="modeloListo">
+      <div class="items">Modelo listo <span class="glyphicon glyphicon-ok modelo-listo" aria-hidden="true"></span></div>
+      <div class="items">Datos procesados <span class="glyphicon glyphicon-ok modelo-listo" aria-hidden="true"></span></div>
+      <button class="btn btn-success btn-lg btn-descargar">Descargar</button>
+    </div>
+
+    <div class="contenedor-analisis row">
+      <div class="col-xs-12">
+          <div class="col-xs-12 contenedor-grafica-resultado">
+asdasd
+          </div>
+      </div>
+    </div>
+  </div>

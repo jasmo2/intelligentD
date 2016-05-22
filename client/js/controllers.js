@@ -27,7 +27,7 @@ angular.module('mat.app')
                 'options': {
                     'url': 'train_upload',
                     'acceptedFiles': '.csv',
-                    'dictDefaultMessage': 'Soltar archivo o seleccionar archivo .csv'
+                    'dictDefaultMessage': 'Soltar o seleccionar archivo .csv'
                 },
                 'eventHandlers': {
                     'sending': function(file, xhr, formData) {
