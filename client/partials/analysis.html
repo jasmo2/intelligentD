@@ -5,10 +5,10 @@
   <br></br>
   <div class="contenedor-analisis row">
     <div class="contenedor-pasos col-xs-12">
-      <div class="pasos-left col-xs-6 tabActivo">
+      <div class="pasos-left col-xs-6" ng-class="{tabActivo: !isModelGenerated()}">
         Paso 1: Modelo
       </div>
-      <div class="pasos-right col-xs-6">
+      <div class="pasos-right col-xs-6" ng-class="{tabActivo:isModelGenerated()}">
         Paso 2: Procesamiento
       </div>
     </div>
@@ -22,7 +22,7 @@
 
         </div>
         <div class="col-xs-2">
-            <span class="glyphicon glyphicon-ok modelo-listo" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-ok modelo-listo" aria-hidden="true" ng-show="isModelGenerated()"></span>
         </div>
         <div class="col-xs-4">
           <button ng-click="uploadTrainSet()" class="btn btn-warning" style="margin: 5px;">Generar modelo predictivo</button>
