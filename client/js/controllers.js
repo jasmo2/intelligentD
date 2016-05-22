@@ -14,9 +14,9 @@ angular.module('mat.app')
     function ($scope,$http,$log,fileUpload) {
       $scope.controllerName = 'AnalysisController';
       var scope = $scope;
-        $scope.uno = False;
-        $scope.dos = Fase;
-        $scope.tres = Fase;
+        $scope.uno = true;
+        $scope.dos = false;
+        $scope.tres = false;
         $scope.uploadTrainSet = function () {
         var file = $scope.myFile;
         $log.log('file is ' );
