@@ -9,6 +9,7 @@ from bson.objectid import ObjectId
 from bson.json_util import dumps, loads
 from slugify import slugify
 from datamining.datamining import analyse, executeModel
+import pickle
 
 class PredictionHandler(tornado.web.RequestHandler):
     def initialize(self, db):
