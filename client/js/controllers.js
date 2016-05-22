@@ -15,15 +15,10 @@ angular.module('mat.app')
       $scope.controllerName = 'AnalysisController';
       var scope = $scope;
       $scope.uploadTrainSet = function () {
-        var file = $scope.myFile;
-        $log.log('file is ' );
-        console.dir(file);
-        fileUpload.uploadFileToUrl(file, "/train_upload",function(response){
-            
-        });
+        $scope.modelGenerated = true;   
       }
     $scope.isModelGenerated = function(){
-        if (true){
+        if ($scope.modelGenerated){
               return true;
             }else {
               return false;
