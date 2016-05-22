@@ -8,6 +8,7 @@ import uuid
 from bson.objectid import ObjectId
 from bson.json_util import dumps, loads
 from slugify import slugify
+from datamining.datamining import analyse, executeModel
 
 class PredictionHandler(tornado.web.RequestHandler):
     def initialize(self, db):
@@ -23,22 +24,23 @@ class PredictionHandler(tornado.web.RequestHandler):
         """
         upload prediction csv
         """
-        fileinfo = self.request.files['prediction_csv'][0]
+        fileinfo = self.request.files['file'][0]
         print("fileinfo is", fileinfo)
         fname = fileinfo['filename']
         extn = os.path.splitext(fname)[1]
         cname = str(uuid.uuid4()) + extn
         fh = open(self._tmp + cname, 'wb')
         fh.write(fileinfo['body'])
-
+        fh.close()
 
         df = pandas.read_csv(self._tmp + cname)
         X = df.ix[:, 1:(len(df.columns))].as_matrix()
 
-        model = self._db['decision'].find({"fname": 1})
-        prediction = executeModel(res['modelo'], X)
-        print(prediction)
-        
+        cursor = self._db['decision'].find_one({"fname": 1})
+        prediction = executeModel(cursor['model'], X)
+
+    
+
         try:
             self._db['decision'].insert({"prediction_csv": cname})
             self.write({'status': 200, 'error': '', 'prediction_csv': cname})
