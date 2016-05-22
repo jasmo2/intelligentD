@@ -15,7 +15,21 @@ angular.module('mat.app')
       $scope.controllerName = 'AnalysisController';
       var scope = $scope;
       $scope.uploadTrainSet = function () {
-        $scope.modelGenerated = true;   
+        var file = $scope.myFile;
+        $log.log('file is ' );
+        console.dir(file);
+        fileUpload.uploadFileToUrl(file, "/train_upload",function(response){
+            $scope.modelError = response['data']['error']
+            $scope.modelGenerated = true;
+        });
+      };
+      $scope.predictValues = function () {
+        var file = $scope.predictFile;
+        $log.log('file is ' );
+        console.dir(file);
+        fileUpload.uploadFileToUrl(file, "/prediction_upload",function(response){
+           
+        });
       }
     $scope.isModelGenerated = function(){
         if ($scope.modelGenerated){
