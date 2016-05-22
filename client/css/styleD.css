@@ -1,6 +1,10 @@
 section{
     padding:5px!important;
 }
+footer{
+    background: #3A3635;
+    color: #FED135;
+}
 .contenedor-analisis{
     border-radius: 5px;
 }
@@ -32,7 +36,7 @@ section{
     box-shadow: 1px 5px 5px #dddddd;
 }
 .titulo-secciones{
-    background: #FED136;
+    background: #F1A535;
     border-radius: 10px;
     padding:5px;
     text-align: center;
@@ -46,4 +50,21 @@ section{
 .tabActivo{
     background: #35322E;
     color: #fff;
+}
+.resultados{
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    background: #35322E;
+    color: #fff;
+}
+.dropdown.open .dropdown-toggle{
+    background: rgba(254, 209, 54,0.7)!important;
+    border-radius: 5px;
+}
+.dropdown-menu{
+    background: #35322E!important;
+}
+.dropdown-menu a:hover{
+    background: #35322E!important;
 }
