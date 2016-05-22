@@ -14,7 +14,7 @@ def analyse(X, y):
     cross = [clf.fit(X[train], y[train]).score(X[test], y[test])
     for train, test in kfold]
 
-    results = {"cossvalidation": cross, "modelo": pickle.dumps(clf)}
+    results = {"cossvalidation": np.mean(cross), "modelo": pickle.dumps(clf)}
     return results
 
 
