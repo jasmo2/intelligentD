@@ -16,14 +16,16 @@
       <div class="contenedor-modelo col-xs-12">
         <div class="col-xs-6">
             <label class="item item-input item-floating-label">
-              <span class="input-label">Data</span>
-              <input type = "file" name="dataset" file-model = "myFile"/>
+                <span class="input-label">Archivo de datos:</span>
+                <input type = "file" name="dataset" file-model = "myFile"/>
             </label>
-            <button ng-click = "uploadTrainSet()">Generar Modelo</button>
 
         </div>
-        <div class="col-xs-6">
-          <div ng-if="">Ok</div>
+        <div class="col-xs-2">
+            <span class="glyphicon glyphicon-ok modelo-listo" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-4">
+          <button ng-click="uploadTrainSet()" class="btn btn-warning" style="margin: 5px;">Generar modelo predictivo</button>
         </div>
       </div>
     </div>
@@ -31,7 +33,7 @@
   <br></br>
   <div class="contenedor-resultado-analisis row">
     <div class="col-xs-12">
-      <div class="col-xs-12 contenedor-grafica-resultado">
+      <div class="col-xs-12 contenedor-grafica-resultado resultados">
         Resultados
       </div>
       <div class="col-xs-12 contenedor-grafica-resultado">
@@ -39,8 +41,9 @@
           Esta es mi grafica
         </div>
         <div class="col-xs-12">
-          <button>Descargar</button>
+          <button class="btn btn-success">Descargar</button>
         </div>
+        <br></br><br></br>
       </div>
     </div>
   </div>
