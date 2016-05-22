@@ -5,6 +5,20 @@ footer{
     background: #3A3635;
     color: #FED135;
 }
+.circulo-paso{
+    border-radius: 50%;
+    background: #383735;
+    padding: 5px;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    color: #fff;
+    font-size: 60px;
+    text-align: center;
+}
+.circulo-paso-activo{
+    background: #F1A535;
+}
 .contenedor-analisis{
     border-radius: 5px;
 }
@@ -50,6 +64,9 @@ footer{
 .tabActivo{
     background: #35322E;
     color: #fff;
+}
+.texto-paso{
+    text-align: center;
 }
 .resultados{
     padding: 10px;
