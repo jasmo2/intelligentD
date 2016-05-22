@@ -38,7 +38,18 @@ class TrainHandler(tornado.web.RequestHandler):
         fh.close()
 
         df = pandas.read_csv(self._tmp + cname)
-        columns_names = self.getTypes(df)
+
+
+        objectCols = {}
+        print(df.columns)
+        print(len(df.columns))
+        for index in range(0, len(df.columns)-1):
+            type = df[df.columns[index]].dtype
+            print(type)
+            if(type.kind == 'O'):
+                print("object: " + str(index) + ", " +str(df.columns[index]))
+
+        # columns_names = self.getTypes(df)
 
         df = self.getUniqueValues(df,columns_names)
 
