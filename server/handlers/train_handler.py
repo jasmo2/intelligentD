@@ -86,6 +86,7 @@ class TrainHandler(tornado.web.RequestHandler):
             self.write({'status': 200, 'error': res['cossvalidation'], 'train_csv': cname})
         except Exception as e:
             # self.write(dumps({'status': 500, 'error': str(e)}))
+            raise tornado.web.HTTPError(500)
             self.write(dumps({'status': 500, 'error': res['cossvalidation']}))
 
         print("Train csv uploaded, cname{}".format(cname))
