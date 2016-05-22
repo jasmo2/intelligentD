@@ -19,8 +19,15 @@ angular.module('mat.app')
         $log.log('file is ' );
         console.dir(file);
         fileUpload.uploadFileToUrl(file, "/train_upload",function(response){
-            
             scope.modelError = response['data']['error']
+        });
+      };
+      $scope.predictValues = function () {
+        var file = $scope.predictFile;
+        $log.log('file is ' );
+        console.dir(file);
+        fileUpload.uploadFileToUrl(file, "/prediction_upload",function(response){
+           
         });
       }
     $scope.isModelGenerated = function(){
