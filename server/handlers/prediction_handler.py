@@ -35,10 +35,10 @@ class PredictionHandler(tornado.web.RequestHandler):
         df = pandas.read_csv(self._tmp + cname)
         X = df.ix[:, 1:(len(df.columns))].as_matrix()
 
-        # prediction = executeModel(res['modelo'], X)
-
         model = self._db['decision'].find({"fname": 1})
-
+        prediction = executeModel(res['modelo'], X)
+        print(prediction)
+        
         try:
             self._db['decision'].insert({"prediction_csv": cname})
             self.write({'status': 200, 'error': '', 'prediction_csv': cname})
