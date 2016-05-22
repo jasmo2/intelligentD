@@ -7,6 +7,7 @@ import uuid
 import os
 from bson.objectid import ObjectId
 from bson.json_util import dumps, loads
+from datamining.datamining import analyse, executeModel
 
 from datamining.datamining import analyse, executeModel
 
@@ -35,6 +36,18 @@ class TrainHandler(tornado.web.RequestHandler):
         cname = str(uuid.uuid4()) + extn
         fh = open(self._tmp + cname, 'wb')
         fh.write(fileinfo['body'])
+        fh.close()
+
+        df = pandas.read_csv(self._tmp + cname)
+        X = df.ix[:, 1:(len(df.columns)-1)].as_matrix()
+        y = df.ix[:, (len(df.columns)-1):len(df.columns)].as_matrix()
+        y = y.transpose()
+        print(X)
+        print(y[0])
+        res = analyse(X, y[0])
+        prediction = executeModel(res['modelo'], X[1:2])
+        print("pred>" + str(prediction))
+
         try:
             self._db['decision'].insert({"train_csv": cname})
 
@@ -43,5 +56,3 @@ class TrainHandler(tornado.web.RequestHandler):
             self.write(dumps({'status': 500, 'error': str(e)}))
 
         print("Train csv uploaded, cname{}".format(cname))
-
-

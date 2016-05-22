@@ -24,9 +24,16 @@ class TestHandler(web.RequestHandler):
         prediction = executeModel(res['modelo'], X[4:5])
         # self.render("index_path")
 
-        print(prediction)
-        df = pandas.DataFrame(data=prediction, columns=['a'])
-        df.to_csv('eggs.csv')
+        # print(prediction)
+        # df = pandas.DataFrame(data=prediction, columns=['a'])
+        # df.to_csv('eggs.csv')
+
+
+
+        df = pandas.read_csv('eggs.csv')
+        xx = df.ix[:, 1:(len(df.columns)-1)].as_matrix()
+        print(xx)
+
         # print(str(type(prediction)))
 
         # with open('eggs.csv', 'w', newline='') as csvfile:
