@@ -52,11 +52,12 @@ angular.module('mat.app')
                     }
                 });
 
-                $scope.$on('finalStep',function () {
+                $scope.$on('finalStep',function (event, args) {
                     $scope.$apply(function () {
                         $scope.uno = false;
                         $scope.dos = false;
                         $scope.tres = true;
+                        $scope.tableM = JSON.parse(args.data);
                     });
                 });
                 $scope.isModelGenerated = function(){
@@ -95,7 +96,7 @@ angular.module('mat.app')
                                     $log.info("sending")
                                 },
                                 'success': function(file, response) {
-                                    $rootScope.$broadcast('finalStep');
+                                    $rootScope.$broadcast('finalStep',{data: response});
                                     $log.info("success Prediction")
                                 }
 

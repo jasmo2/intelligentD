@@ -57,7 +57,7 @@ class PredictionHandler(tornado.web.RequestHandler):
 
         try:
             self._db['decision'].insert({"prediction_csv": cname})
-            self.write({'status': 200, 'error': '', 'prediction_csv': cname})
+            self.write(df.to_json())
         except Exception as e:
             raise tornado.web.HTTPError(500)
             self.write(dumps({'status': 500, 'error': str(e)}))
