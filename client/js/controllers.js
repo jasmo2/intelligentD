@@ -14,8 +14,8 @@ angular.module('mat.app')
     function ($scope,$http,$log,fileUpload) {
       $scope.controllerName = 'AnalysisController';
       var scope = $scope;
-        $scope.uno = false;
-        $scope.dos = true;
+        $scope.uno = true;
+        $scope.dos = false;
         $scope.tres = false;
         // "/train_upload"
         angular.extend($scope,$log, {
@@ -38,8 +38,7 @@ angular.module('mat.app')
                 }
             }
         });
-
-      
+        
     $scope.isModelGenerated = function(){
         if ($scope.modelGenerated){
               return true;

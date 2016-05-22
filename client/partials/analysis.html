@@ -1,8 +1,10 @@
 <div class="contenedor-seccion">
+
+  <div class="titulos">Predicción de datos en tres pasos</div>
   <div class="contenedor-pasos">
     <div class="contenedor-paso col-xs-3">
       <div class="contenedor-paso">
-        <div class="circulo-paso" ng-class="{circulo-paso-activo: !isModelGenerated()}">
+        <div class="circuloPaso" ng-class="{circuloPasoActivo: uno}">
           1
         </div>
         <div class="texto-paso">
@@ -11,35 +13,37 @@
       </div>
     </div>
     <div class="col-xs-1">
-
+      <span class="glyphicon glyphicon-share-alt icono-paso" aria-hidden="true"></span>
     </div>
     <div class="col-xs-3">
-      <div class="contenedor-paso">
-        <div class="circulo-paso">
+      <div class="contenedor-paso" ng-class="{circuloPasoActivo: dos}">
+        <div class="circuloPaso">
           2
         </div>
         <div class="texto-paso">
-          Subir datos a proyectar
+          Subir datos a predecir
         </div>
       </div>
     </div>
     <div class="col-xs-1">
-
+      <span class="glyphicon glyphicon-share-alt icono-paso" aria-hidden="true"></span>
     </div>
-    <div class="contenedor-paso col-xs-3">
-      <div class="contenedor-paso ">
-        <div class="circulo-paso">
+    <div class="col-xs-3">
+      <div class="contenedor-paso" ng-class="{circuloPasoActivo: tres}">
+        <div class="circuloPaso">
           3
         </div>
         <div class="texto-paso">
-          Resultados de proyección
+          Resultados de predicción
         </div>
       </div>
     </div>
   </div>
   <br></br>
   <div class="titulo-secciones">
-      <h2 class="section-heading">Generar proyección</h2>
+      <div class="circuloPaso circulo-en-titulo">
+          3
+        </div><h2 class="section-heading titulo-paso">Selecciona el archivo historico .csv</h2>
   </div>
   <br></br>
   <div class="contenedor-analisis row">
