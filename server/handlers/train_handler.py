@@ -49,7 +49,7 @@ class TrainHandler(tornado.web.RequestHandler):
         print("pred>" + str(prediction))
 
         try:
-            self._db['decision'].insert({"train_csv": cname})
+            self._db['decision'].insert({"fname":1,"train_csv": cname, "model": res['modelo']})
 
             self.write({'status': 200, 'error': '', 'train_csv': cname})
         except Exception as e:
