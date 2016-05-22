@@ -68,3 +68,11 @@ footer{
 .dropdown-menu a:hover{
     background: #35322E!important;
 }
+.modelo-listo{
+    color: #449d44;
+    font-size: 20px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: none!important;
+}
