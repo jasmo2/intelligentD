@@ -37,7 +37,7 @@ class PredictionHandler(tornado.web.RequestHandler):
 
         # prediction = executeModel(res['modelo'], X)
 
-
+        model = self._db['decision'].find({"fname": 1})
 
         try:
             self._db['decision'].insert({"prediction_csv": cname})
