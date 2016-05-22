@@ -18,8 +18,11 @@ angular.module('mat.app')
         var file = $scope.myFile;
         $log.log('file is ' );
         console.dir(file);
-        fileUpload.uploadFileToUrl(file, "/train_upload");
+        fileUpload.uploadFileToUrl(file, "/train_upload",function(){
+            //#fixme
+        });
       }
+
     }
   ]
 )

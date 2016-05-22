@@ -2,7 +2,7 @@
 
 angular.module('mat.app')
 .service('fileUpload', ['$http', function ($http,$log) {
-      this.uploadFileToUrl = function(file, uploadUrl){
+      this.uploadFileToUrl = function(file, uploadUrl,callback){
          var fd = new FormData();
          fd.append('file', file);
 
@@ -11,7 +11,8 @@ angular.module('mat.app')
               headers: {'Content-Type': undefined}
            })
           .then(function(response) {
-            $log.info(response.data);
+              $log.info(response.data);
+              callback;
           },function(err){
             $log.error(err);
 
