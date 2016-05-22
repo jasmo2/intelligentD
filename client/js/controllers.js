@@ -18,11 +18,17 @@ angular.module('mat.app')
         var file = $scope.myFile;
         $log.log('file is ' );
         console.dir(file);
-        fileUpload.uploadFileToUrl(file, "/train_upload",function(){
-            //#fixme
+        fileUpload.uploadFileToUrl(file, "/train_upload",function(response){
+            
         });
       }
-
+    $scope.isModelGenerated = function(){
+        if (true){
+              return true;
+            }else {
+              return false;
+            }
+          };
     }
   ]
 )
