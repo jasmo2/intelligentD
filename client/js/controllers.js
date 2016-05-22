@@ -25,7 +25,8 @@ angular.module('mat.app')
             singleGallery: {},
             dropzoneConfig: {
                 'options': {
-                    'url': 'train_upload'
+                    'url': 'train_upload',
+                    'dictDefaultMessage': 'Soltar archivo o seleccionar archivo .csv'
                 },
                 'eventHandlers': {
                     'sending': function(file, xhr, formData) {

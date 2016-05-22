@@ -23,6 +23,7 @@ footer{
     color: #fff;
     font-size: 60px;
     text-align: center;
+    z-index: 2;
 }
 .circulo-en-titulo{
     position: absolute;
@@ -61,6 +62,23 @@ footer{
     padding: 10px;
     border-radius: 10px;
     box-shadow: 1px 5px 5px #dddddd;
+}
+.drop-zone{
+height: 200px;
+    height: 200px;
+    width: 100%;
+    margin: 0 auto;
+    background: #FFE3BA;
+    border-radius: 10px;
+    border: 3px dashed #DC8300;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 2px #555;
+    font-size: 40px;
+}
+.drop-zone span{
+    display: block;
+    margin-top: 60px;
 }
 .titulo-paso{
     padding-left: 110px!important;

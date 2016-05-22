@@ -40,39 +40,27 @@
     </div>
   </div>
   <br></br>
-  <div class="titulo-secciones">
-      <div class="circuloPaso circulo-en-titulo">
-          3
-        </div><h2 class="section-heading titulo-paso">Selecciona el archivo historico .csv</h2>
-  </div>
-  <br></br>
-  <div class="contenedor-analisis row">
-    <div class="contenedor-pasos col-xs-12">
-      <div class="pasos-left col-xs-6" ng-class="{tabActivo: !isModelGenerated()}">
-        Paso 1: Modelo
-      </div>
-      <div class="pasos-right col-xs-6" ng-class="{tabActivo:isModelGenerated()}">
-        Paso 2: Procesamiento
-      </div>
+  <div>
+    <div class="titulo-secciones">
+        <div class="circuloPaso circulo-en-titulo">
+            1
+          </div><h2 class="section-heading titulo-paso">Selecciona el archivo historico</h2>
     </div>
-    <div class="col-xs-12">
-      <div class="contenedor-modelo col-xs-12">
-        <div class="col-xs-6">
-           <!--dropzone="dropzoneConfig"-->
+    <div class="contenedor-analisis row">
+      <div class="col-xs-12">
           <form action="/file-upload"
-          class="dropzone"
-          id="my-awesome-dropzone" dropzone="dropzoneConfig">
-
+                class="dropzone drop-zone"
+                id="my-awesome-dropzone" dropzone="dropzoneConfig">
           </form>
-        </div>
-        <div class="col-xs-2">
-        </div>
-        <div class="col-xs-4">
-        </div>
+
+          <div class="col-xs-2">
+          </div>
+          <div class="col-xs-4">
+          </div>
       </div>
     </div>
-
   </div>
+
   <br></br>
   <div class="contenedor-resultado-analisis row">
     <div class="col-xs-12">
