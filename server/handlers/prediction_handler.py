@@ -33,6 +33,14 @@ class PredictionHandler(tornado.web.RequestHandler):
         fh.close()
 
         df = pandas.read_csv(self._tmp + cname)
+
+
+        myDic = pickle.load(open("dictionary.p", "rb"))
+
+        for index in myDic:
+            myToInt = lambda x:myDic[index][x]
+            df[df.columns[index]] = df[df.columns[index]].map(myToInt)
+
         X = df.ix[:, 1:(len(df.columns))].as_matrix()
 
         cursor = self._db['decision'].find_one({"fname": 1})
