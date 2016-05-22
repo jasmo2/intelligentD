@@ -48,7 +48,10 @@ class PredictionHandler(tornado.web.RequestHandler):
         prediction = executeModel(cursor['model'], X)
 
         dataf = pandas.DataFrame(data=prediction, columns=["target"])
-        dataf.to_csv('predictions.csv')
+
+        df["target"] = dataf["target"]
+        df.to_csv('predictions.csv')
+        # dataf.to_csv('predictions.csv')
 
 
 
