@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('mat.app')
-.service('fileUpload', ['$http', function ($http,$log) {
+.service('fileUpload', ['$http','$log',
+    function ($http,$log) {
       this.uploadFileToUrl = function(file, uploadUrl,callback){
          var fd = new FormData();
          fd.append('file', file);

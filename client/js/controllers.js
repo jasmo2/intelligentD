@@ -20,6 +20,7 @@ angular.module('mat.app')
         console.dir(file);
         fileUpload.uploadFileToUrl(file, "/train_upload",function(response){
             
+            scope.modelError = response['data']['error']
         });
       }
     $scope.isModelGenerated = function(){
