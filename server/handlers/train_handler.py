@@ -29,7 +29,7 @@ class TrainHandler(tornado.web.RequestHandler):
         #     return
 
         fileinfo = self.request.files['file'][0]
-        print("fileinfo is", fileinfo)
+        # print("fileinfo is", fileinfo)
         fname = fileinfo['filename']
         extn = os.path.splitext(fname)[1]
         cname = str(uuid.uuid4()) + extn
@@ -38,6 +38,10 @@ class TrainHandler(tornado.web.RequestHandler):
         fh.close()
 
         df = pandas.read_csv(self._tmp + cname)
+        columns_names = self.getTypes(df)
+
+        df = self.getUniqueValues(df,columns_names)
+
         X = df.ix[:, 1:(len(df.columns)-1)].as_matrix()
         y = df.ix[:, (len(df.columns)-1):len(df.columns)].as_matrix()
         y = y.transpose()
@@ -56,3 +60,22 @@ class TrainHandler(tornado.web.RequestHandler):
             self.write(dumps({'status': 500, 'error': res['cossvalidation']}))
 
         print("Train csv uploaded, cname{}".format(cname))
+
+    def getTypes(self,df):
+        df_limit = df.drop(df.columns[[-1]], axis=1)
+        g = df_limit.columns.to_series().groupby(df_limit.dtypes).groups
+        columns_names = {k.name: v for k, v in g.items()}['object']
+        print(columns_names)
+        return columns_names
+
+    def getUniqueValues(self,df,column_names):
+        series_to_df = {}
+        for column_name in column_names:
+            series_uniq = df[column_name].unique()
+            values_dict = {k: idx for idx, k in enumerate(series_uniq)}
+            series_to_df[column_name] = df[column_name].replace(values_dict, regex=True)
+
+        series_to_df[df.columns[-1]] = df[df.columns[-1]]
+        new_df = pandas.DataFrame(series_to_df)
+        print(new_df.head())
+        return new_df
