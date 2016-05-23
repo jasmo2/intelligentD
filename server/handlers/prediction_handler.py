@@ -35,6 +35,7 @@ class PredictionHandler(tornado.web.RequestHandler):
         fh.close()
 
         df = pandas.read_csv(self._tmp + cname)
+        cursor = self._db['decision'].find_one({"train_csv": analysisCSV})
 
 
         myDic = pickle.load(open("dictionary.p", "rb"))
@@ -45,10 +46,9 @@ class PredictionHandler(tornado.web.RequestHandler):
 
         X = df.ix[:, 1:(len(df.columns))].as_matrix()
 
-        cursor = self._db['decision'].find_one({"train_csv": analysisCSV})
         prediction = executeModel(cursor['model'], X)
 
-        dataf = pandas.DataFrame(data=prediction, columns=["target"])
+        dataf = pandas.DataFrame(data=prediction, columns=["Target"])
 
         df["target"] = dataf["target"]
         df.to_csv('predictions.csv')

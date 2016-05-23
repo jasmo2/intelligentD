@@ -66,9 +66,10 @@ class TrainHandler(tornado.web.RequestHandler):
         # columns_names = self.getTypes(df)
 
         # df = self.getUniqueValues(df,columns_names)
-
         pickle.dump( myDic, open("dictionary.p", "wb"))
         translator = pickle.load(open("dictionary.p", "rb"))
+        # import pdb
+        # pdb.set_trace()
 
         X = df.ix[:, 1:(len(df.columns)-1)].as_matrix()
         print(X)
