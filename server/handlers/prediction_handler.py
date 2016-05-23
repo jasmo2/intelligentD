@@ -25,6 +25,7 @@ class PredictionHandler(tornado.web.RequestHandler):
         upload prediction csv
         """
         fileinfo = self.request.files['file'][0]
+        analysisCSV = self.get_argument('trainCsv')
         print("fileinfo is", fileinfo)
         fname = fileinfo['filename']
         extn = os.path.splitext(fname)[1]
@@ -44,7 +45,7 @@ class PredictionHandler(tornado.web.RequestHandler):
 
         X = df.ix[:, 1:(len(df.columns))].as_matrix()
 
-        cursor = self._db['decision'].find_one({"fname": 1})
+        cursor = self._db['decision'].find_one({"train_csv": analysisCSV})
         prediction = executeModel(cursor['model'], X)
 
         dataf = pandas.DataFrame(data=prediction, columns=["target"])

@@ -6,33 +6,30 @@ angular.module('mat.app')
             // "/train_upload"
             scope.$on('initializePredictionUploader',function () {
                 scope.$apply(function () {
-                    scope.train_csv
+                    scope.train_csv = $rootScope.train_csv;
+                    $log.info("success Upload, scope.train: "+scope.train_csv);
+
                 });
             });
-            angular.extend($scope,$log, {
-                    newGallery: {},
-                    errorDiv: false,
-                    errorMessages: [],
-                    singleGallery: {},
-                    dropzoneConfig: {
-                        'options': {
+
+            $scope.dropzonePrediction = {
+                      'options': {
                             'url': 'prediction_upload',
                             'acceptedFiles': '.csv',
-                            'params': { csv: scope.train_csv },
                             'dictDefaultMessage': 'Soltar o seleccionar archivo .csv'
                         },
                         'eventHandlers': {
                             'sending': function(file, xhr, formData) {
+                                formData.append("trainCsv",   scope.train_csv)
                                 $log.info("sending")
                             },
                             'success': function(file, response) {
-                                $rootScope.$broadcast('finalStep',{data: response});
-                                $log.info("success Prediction")
+                              $rootScope.$broadcast('finalStep',{data: response});
+                              $log.info("success Prediction")
                             }
 
                         }
-                    }
-                });
+                    };
 
 
             $scope.isModelGenerated = function(){

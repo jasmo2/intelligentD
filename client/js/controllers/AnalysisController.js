@@ -16,12 +16,7 @@ angular.module('mat.app')
                     });
                 };
                 // "/train_upload"
-                angular.extend($scope,$log, {
-                    newGallery: {},
-                    errorDiv: false,
-                    errorMessages: [],
-                    singleGallery: {},
-                    dropzoneConfig: {
+                $scope.dropzoneConfig = {
                         'options': {
                             'url': 'train_upload',
                             'acceptedFiles': '.csv',
@@ -34,13 +29,11 @@ angular.module('mat.app')
                             'success': function(file, response) {
                                 $rootScope.train_csv = response.train_csv;
                                 firstToSecondStep(response.error);
-                                $log.info("success Upload");
                                 $rootScope.$broadcast('initializePredictionUploader');
                             }
 
                         }
-                    }
-                });
+                    };
 
                 $scope.$on('finalStep',function (event, args) {
                     $scope.$apply(function () {
