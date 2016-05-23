@@ -48,7 +48,7 @@ class PredictionHandler(tornado.web.RequestHandler):
         prediction = executeModel(cursor['model'], X)
 
         dataf = pandas.DataFrame(data=prediction, columns=["Target"])
-
+        df = self.revertToDefaultValues(df,myDic)
         df["Target"] = dataf["Target"]
         df.to_csv('predictions.csv')
         # dataf.to_csv('predictions.csv')
@@ -72,3 +72,12 @@ class PredictionHandler(tornado.web.RequestHandler):
         self.set_header ('Content-Type', 'text/csv')
         self.set_header ('Content-Disposition', 'attachment; filename='+"prediction.csv"+'')
         self.write(ifile.read())
+
+    def revertToDefaultValues(self,df,myDic):
+        for index in myDic:
+            def getKey(valToevaluate):
+                for key, val in myDic[index].items():
+                    if val == valToevaluate:
+                        return key
+            df[df.columns[index]] = df[df.columns[index]].map(getKey)
+        return df
