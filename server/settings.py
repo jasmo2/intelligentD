@@ -1,10 +1,11 @@
-__author__ = 'davidl'
+__author__ = 'intellimining'
 """
 settings.py
 """
 import os
 from tornado.options import define
 
+define("host", default='0.0.0.0', help="port", type=int)
 define("port", default=9915, help="port", type=int)
 define("mongodb_host",default='localhost:27017', help='Monogo Database Host', type=str)
 define("mongodb_name",default='mat', help='Database Name', type=str)

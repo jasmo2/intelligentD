@@ -68,13 +68,14 @@ def init_db(db):
 static_path = options.static_path
 
 app = tornado.web.Application([
-      (r'/', IndexHandler),
-      (r'/train_upload', TrainHandler,dict(db=db)),
-      (r'/prediction_upload', PredictionHandler,dict(db=db)),
-      (r'/test', TestHandler)
+    (r'/(favicon.ico)', tornado.web.StaticFileHandler, {"path": ""}),
+    (r'/', IndexHandler),
+    (r'/train_upload', TrainHandler,dict(db=db)),
+    (r'/prediction_upload', PredictionHandler,dict(db=db)),
+    (r'/test', TestHandler)
     #   (r'/prediction_upload', PredictionHandler,dict(db=db))
-      #api prefix means that we load json data
-    ],
+    #api prefix means that we load json data
+],
     static_path=static_path,
     autoreload=True,
     debug=True
@@ -85,7 +86,7 @@ if __name__ == '__main__':
     options.parse_command_line()
     if options.init_db:
         init_db(db)
-    print ('server running on http://localhost:{}'.format(options.port))
+    print ('server running on http://{}:{}'.format(options.host,options.port))
     app.listen(options.port,xheaders=True)
     ioloop = tornado.ioloop.IOLoop.instance()
     ioloop.start()
