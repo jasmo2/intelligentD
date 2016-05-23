@@ -66,23 +66,25 @@ class TrainHandler(tornado.web.RequestHandler):
         # columns_names = self.getTypes(df)
 
         # df = self.getUniqueValues(df,columns_names)
-        pickle.dump( myDic, open("dictionary.p", "wb"))
-        translator = pickle.load(open("dictionary.p", "rb"))
+
+        # translator = pickle.load(open("dictionary.p", "rb"))
         # import pdb
         # pdb.set_trace()
 
         X = df.ix[:, 1:(len(df.columns)-1)].as_matrix()
-        print(X)
         y = df.ix[:, (len(df.columns)-1):len(df.columns)].as_matrix()
         y = y.transpose()
-        print(X)
-        print(y[0])
+
         res = analyse(X, y[0])
         prediction = executeModel(res['modelo'], X[1:2])
         print("pred>" + str(prediction))
 
         try:
-            self._db['decision'].insert({"fname":1,"train_csv": cname, "model": res['modelo']})
+            self._db['decision'].insert({
+                        "fname":1,"train_csv": cname,
+                        "model": res['modelo'],
+                        "myDic": pickle.dumps( myDic)
+            })
 
             self.write({'status': 200, 'error': res['cossvalidation'], 'train_csv': cname})
         except Exception as e:
