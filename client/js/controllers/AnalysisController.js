@@ -14,7 +14,10 @@ angular.module('intellimining')
                         $scope.dos = true;
                         $scope.modelError = Math.floor(modelError*100);
                     });
-                };
+                },
+                    printPredictingVariables = function (variables) {
+
+                    };
                 // "/train_upload"
                 $scope.dropzoneConfig = {
                         'options': {
@@ -27,13 +30,15 @@ angular.module('intellimining')
                                 $log.info("sending")
                             },
                             'success': function(file, response) {
-                                $rootScope.train_csv = response.train_csv;
-                                firstToSecondStep(response.error);
-                                $rootScope.$broadcast('initializePredictionUploader');
+                                $rootScope.train_csv = response['train_csv'];
+                                // firstToSecondStep(response.error);
+                                // $rootScope.$broadcast('initializePredictionUploader');
+                                printPredictingVariables(response['variables']);
                             }
 
                         }
                     };
+
 
                 $scope.$on('finalStep',function (event, args) {
                     $scope.$apply(function () {

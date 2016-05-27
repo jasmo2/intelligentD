@@ -2,6 +2,7 @@
 __pycache__/
 */__pycache__/*
 server/handlers/__pycache__/
+client/bower_components/*
 venv
 *.pyc
 *.pyo
