@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mat.app')
+angular.module('intellimining')
 .service('fileUpload', ['$http','$log',
     function ($http,$log) {
       this.uploadFileToUrl = function(file, uploadUrl,callback){

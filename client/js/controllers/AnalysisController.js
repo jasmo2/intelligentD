@@ -1,4 +1,4 @@
-angular.module('mat.app')
+angular.module('intellimining')
 
     .controller('AnalysisController', ['$rootScope','$scope','$http','$log','fileUpload',
             function ($rootScope,$scope,$http,$log,fileUpload) {

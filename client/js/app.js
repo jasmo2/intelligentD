@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mat.app', [
+angular.module('intellimining', [
   'ngResource',
   'ngSanitize',
   'ngRoute',

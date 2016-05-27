@@ -1,7 +1,7 @@
 /**
  * Created by jasmo2 on 5/21/16.
  */
-angular.module('mat.app')
+angular.module('intellimining')
 .directive('fileModel', ['$parse', function ($parse) {
     return {
         restrict: 'A',

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mat.app').config(['$routeProvider',
+angular.module('intellimining').config(['$routeProvider',
   function ($routeProvider) {
     $routeProvider
       .when('/jjfnhskodb', {
