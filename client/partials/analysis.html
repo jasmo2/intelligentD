@@ -40,8 +40,27 @@
         </div>
     </div>
     <br></br>
-    <div>
-        {{}}
+    <div class="var-selection" ng-show="variables">
+        <table  class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>#</th>
+                <th>Variable</th>
+                <th>Valor</th>
+            </tr>
+            </thead>
+            <tr ng-repeat="variable in variables "
+                selection-model
+                selection-model-type="checkbox"
+                selection-model-mode="multiple-additive"
+                selection-model-selected-class="foobar">
+                <td><input type="checkbox"></td>
+                <td>{{$index + 1}}</td>
+                <td>{{variable.label}}</td>
+                <td>{{variable.value}}</td>
+            </tr>
+        </table>
     </div>
     <div ng-show="uno">
         <div class="titulo-secciones">
