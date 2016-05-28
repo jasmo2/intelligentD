@@ -9,6 +9,9 @@ footer{
     float: right;
     margin: 0px 25px;
 }
+.var-selection{
+    margin-left: 12rem;
+}
 .titulos{
     font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
     font-size: 50px;
