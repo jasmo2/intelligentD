@@ -40,23 +40,23 @@
         </div>
     </div>
     <br></br>
-    <div class="row">
-        <div class="col-xs-12 col-sm-offset-1 col-md-11" ng-show="variables">
+    <div class="row" ng-show="variables">
+        <div class="col-xs-12" >
+            <button class="btn-block btn-warning" ng-click="chooseVariables()">Continuar con predicción</button>
+        </div>
+        <div class="col-xs-12 col-sm-offset-1 col-md-11" >
             <table  class="table">
                 <thead>
                 <tr>
-                    <th></th>
+			        <th row-select-all="variables"  selected="selected" ng-click="selectAll(variables)"></th>
                     <th>#</th>
                     <th>Variable</th>
                     <th>Valor</th>
                 </tr>
                 </thead>
-                <tr ng-repeat="variable in variables "
-                    selection-model
-                    selection-model-type="checkbox"
-                    selection-model-mode="multiple-additive"
-                    selection-model-selected-class="foobar">
-                    <td><input type="checkbox"></td>
+                <tr ng-repeat="variable in variables " >
+
+                    <td><input type="checkbox"  ></td>
                     <td>{{$index + 1}}</td>
                     <td>{{variable.label}}</td>
                     <td>{{variable.value}}</td>

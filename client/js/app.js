@@ -4,5 +4,5 @@ angular.module('intellimining', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'selectionModel'
+  'smart-table'
 ]);
