@@ -31,14 +31,6 @@ angular.module('intellimining')
                         }
                     };
 
-
-            $scope.isModelGenerated = function(){
-                if ($scope.modelGenerated){
-                    return true;
-                }else {
-                    return false;
-                }
-            };
         }
     ]
 )

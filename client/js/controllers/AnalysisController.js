@@ -1,15 +1,16 @@
 angular.module('intellimining')
+
     .controller('AnalysisController', ['$rootScope','$scope','$http','$log','fileUpload',
             function ($rootScope,$scope,$http,$log,fileUpload) {
                 $scope.controllerName = 'AnalysisController';
-                $scope.uno = true ;
-                $scope.dos = false;
-                $scope.tres = false;
+                $scope.stepOne = true ;
+                $scope.stepTwo = false;
+                $scope.step_three = false;
 
                 var firstToSecondStep = function (modelError) {
                         $scope.$apply(function () {
-                            $scope.uno = false;
-                            $scope.dos = true;
+                            $scope.stepOne = false;
+                            $scope.stepTwo = true;
                             $scope.modelError = Math.floor(modelError*100);
                         });
                     },
@@ -18,7 +19,8 @@ angular.module('intellimining')
                         var predictingVariables = [];
 
                         for(var i = 0,l = variables.length; i < l; i+=1){
-                           predictingVariables.push({is_checked: true, value: "–", label: variables[i]})
+                            var predictionVariable = i<(l-1)?true:false;
+                            predictingVariables.push({is_checked: predictionVariable, selected: predictionVariable, value: "–", label: variables[i]})
                         }
                         $scope.$apply(function () {
                             $scope['variables'] = predictingVariables;
@@ -52,19 +54,13 @@ angular.module('intellimining')
                 };
                 $scope.$on('finalStep',function (event, args) {
                     $scope.$apply(function () {
-                        $scope.uno = false;
-                        $scope.dos = false;
-                        $scope.tres = true;
+                        $scope.stepOne = false;
+                        $scope.stepTwo = false;
+                        $scope.stepThree = true;
                         $scope.tableM = JSON.parse(args.data);
                     });
                 });
-                $scope.isModelGenerated = function(){
-                    if ($scope.modelGenerated){
-                        return true;
-                    }else {
-                        return false;
-                    }
-                };
+
                 $scope.selectedVariables= [];
 
                 // Function to get data for all selected items
@@ -100,4 +96,4 @@ angular.module('intellimining')
                 };
             }
         ]
-    )
+    );
