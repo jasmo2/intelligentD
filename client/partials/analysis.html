@@ -1,14 +1,14 @@
 <div class="contenedor-seccion">
 
-    <div class="titulos">Predicción de datos en tres pasos</div>
+    <div class="titulos">Three steps prediction</div>
     <div class="contenedor-pasos">
         <div class="contenedor-paso col-xs-3">
             <div class="contenedor-paso">
-                <div class="circuloPaso" ng-class="{circuloPasoActivo: uno}">
+                <div class="circuloPaso" ng-class="{circuloPasoActivo: stepOne}">
                     1
                 </div>
                 <div class="texto-paso">
-                    Subir historico
+                    Upload Historic data
                 </div>
             </div>
         </div>
@@ -17,11 +17,11 @@
         </div>
         <div class="col-xs-3">
             <div class="contenedor-paso" >
-                <div class="circuloPaso" ng-class="{circuloPasoActivo: dos}">
+                <div class="circuloPaso" ng-class="{circuloPasoActivo: stepTwo}">
                     2
                 </div>
                 <div class="texto-paso">
-                    Subir datos a predecir
+                   Upload predicting data
                 </div>
             </div>
         </div>
@@ -30,11 +30,11 @@
         </div>
         <div class="col-xs-3">
             <div class="contenedor-paso" >
-                <div class="circuloPaso" ng-class="{circuloPasoActivo: tres}">
+                <div class="circuloPaso" ng-class="{circuloPasoActivo: stepThree}">
                     3
                 </div>
                 <div class="texto-paso">
-                    Resultados de predicción
+                    Prediction Results
                 </div>
             </div>
         </div>
@@ -42,16 +42,16 @@
     <br></br>
     <div class="row" ng-show="variables">
         <div class="col-xs-12" >
-            <button class="btn-block btn-warning" ng-click="chooseVariables()">Continuar con predicción</button>
+            <button class="btn-block btn-warning" ng-click="chooseVariables()">Continue with the prediction</button>
         </div>
         <div class="col-xs-12 col-sm-offset-1 col-md-11" >
             <table  class="table">
                 <thead>
                 <tr>
-			        <th row-select-all="variables"  selected="selected" ng-click="selectAll(variables)"></th>
+			        <th row-select-all="data"  selected="selected" ng-click="selectAll(data)"></th>
                     <th>#</th>
                     <th>Variable</th>
-                    <th>Valor</th>
+                    <th>Value</th>
                 </tr>
                 </thead>
                 <tr ng-repeat="variable in variables " >
@@ -64,11 +64,11 @@
             </table>
         </div>
     </div>
-    <div ng-show="uno">
+    <div ng-show="stepOne">
         <div class="titulo-secciones">
             <div class="circuloPaso circulo-en-titulo">
                 1
-            </div><h2 class="section-heading titulo-paso">Selecciona el archivo historico</h2>
+            </div><h2 class="section-heading titulo-paso">Historical data upload</h2>
         </div>
         <div class="contenedor-analisis row">
             <div class="col-xs-12">
@@ -85,16 +85,16 @@
         </div>
     </div>
 
-    <div ng-show="dos">
+    <div ng-show="stepTwo">
         <div class="titulo-secciones">
             <div class="circuloPaso circulo-en-titulo">
                 2
             </div>
-            <h2 class="section-heading titulo-paso">Selecciona el archivo a predecir</h2>
+            <h2 class="section-heading titulo-paso">Predicting data upload</h2>
         </div>
         <div class="modeloListo">
             Modelo listo <span class="glyphicon glyphicon-ok modelo-listo" aria-hidden="true"></span>
-            <span class="" aria-hidden="true">Presición: </span>
+            <span class="" aria-hidden="true">Pressition: </span>
             <span class="" aria-hidden="true">{{modelError}}%</span>
         </div>
 
@@ -113,17 +113,17 @@
         </div>
     </div>
 
-    <div ng-show="tres">
+    <div ng-show="stepThree">
         <div class="titulo-secciones">
             <div class="circuloPaso circulo-en-titulo">
                 3
             </div>
-            <h2 class="section-heading titulo-paso">Predicción de resultados</h2>
+            <h2 class="section-heading titulo-paso">Prediction Results</h2>
         </div>
         <div class="modeloListo">
-            <div class="items">Modelo listo <span class="glyphicon glyphicon-ok modelo-listo" aria-hidden="true"></span></div>
-            <div class="items">Datos procesados <span class="glyphicon glyphicon-ok modelo-listo" aria-hidden="true"></span></div>
-            <a href="/prediction_upload" class="btn btn-success btn-lg btn-descargar">Descargar</a>
+            <div class="items">Model ready <span class="glyphicon glyphicon-ok modelo-listo" aria-hidden="true"></span></div>
+            <div class="items">Process data <span class="glyphicon glyphicon-ok modelo-listo" aria-hidden="true"></span></div>
+            <a href="/prediction_upload" class="btn btn-success btn-lg btn-descargar">Download</a>
         </div>
 
         <div class="contenedor-analisis row">
