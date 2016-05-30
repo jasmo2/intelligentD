@@ -9,7 +9,7 @@ angular.module('intellimining').config(['$routeProvider',
       })
       .when('/', {
         templateUrl: '/static/partials/analysis.html',
-        controller: 'AnalysisController'
+        controller: 'StepsController'
       })
   }
 ]);

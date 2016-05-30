@@ -2,18 +2,7 @@ angular.module('intellimining')
 
     .controller('AnalysisController', ['$rootScope','$scope','$http','$log','fileUpload',
             function ($rootScope,$scope,$http,$log,fileUpload) {
-                $scope.stepOne = true ;
-                $scope.stepTwo = false;
-                $scope.step_three = false;
-
-                var firstToSecondStep = function (modelError) {
-                        $scope.$apply(function () {
-                            $scope.stepOne = false;
-                            $scope.stepTwo = true;
-                            $scope.modelError = Math.floor(modelError*100);
-                        });
-                    },
-                    printPredictingVariables = function (variables) {
+                var printPredictingVariables = function (variables) {
                         var predictingVariables = [];
                         for(var i = 0,l = variables.length; i < l; i+=1){
                             var predictionVariable = i<(l-1)?true:false;
@@ -43,15 +32,6 @@ angular.module('intellimining')
 
                     }
                 };
-
-                $scope.$on('finalStep',function (event, args) {
-                    $scope.$apply(function () {
-                        $scope.stepOne = false;
-                        $scope.stepTwo = false;
-                        $scope.stepThree = true;
-                        $scope.tableM = JSON.parse(args.data);
-                    });
-                });
 
                 $scope.selectedVariables= [];
 
