@@ -21,7 +21,7 @@
                     2
                 </div>
                 <div class="texto-paso">
-                   Upload predicting data
+                    Upload predicting data
                 </div>
             </div>
         </div>
@@ -40,50 +40,53 @@
         </div>
     </div>
     <br><br>
-    <div class="row" ng-show="variables">
-        <div class="col-xs-12" >
-            <button class="btn-block btn-warning" ng-click="chooseVariables()">Continue with the prediction</button>
-        </div>
-        <div class="col-xs-12 col-sm-offset-1 col-md-11" >
-            <table  class="table">
-                <thead>
-                <tr>
-			        <th row-select-all="data"  selected="selected" ng-click="selectAll(data)"></th>
-                    <th>#</th>
-                    <th>Variable</th>
-                    <th>Value</th>
-                </tr>
-                </thead>
-                <tr ng-repeat="variable in variables " >
-
-                    <td><input type="checkbox"  ></td>
-                    <td>{{$index + 1}}</td>
-                    <td>{{variable.label}}</td>
-                    <td>{{variable.value}}</td>
-                </tr>
-            </table>
-        </div>
-    </div>
     <div ng-show="stepOne">
-        <div class="titulo-secciones">
-            <div class="circuloPaso circulo-en-titulo">
-                1
-            </div><h2 class="section-heading titulo-paso">Historical data upload</h2>
-        </div>
-        <div class="contenedor-analisis row">
-            <div class="col-xs-12">
-                <form action="/file-upload"
-                      class="dropzone drop-zone"
-                      id="my-awesome-dropzone" dropzone="dropzoneConfig">
-                </form>
-
-                <div class="col-xs-2">
+        <div ng-controller="PredictionController">
+            <div class="row" ng-show="variables">
+                <div class="col-xs-12" >
+                    <button class="btn-block btn-warning" ng-click="chooseVariables()">Continue with the prediction</button>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-12 col-sm-offset-1 col-md-11" >
+                    <table  class="table">
+                        <thead>
+                        <tr>
+                            <th row-select-all="data"  selected="selected" ng-click="selectAll(data)"></th>
+                            <th>#</th>
+                            <th>Variable</th>
+                            <th>Value</th>
+                        </tr>
+                        </thead>
+                        <tr ng-repeat="variable in variables " >
+
+                            <td><input type="checkbox"  ></td>
+                            <td>{{$index + 1}}</td>
+                            <td>{{variable.label}}</td>
+                            <td>{{variable.value}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="titulo-secciones">
+                <div class="circuloPaso circulo-en-titulo">
+                    1
+                </div><h2 class="section-heading titulo-paso">Historical data upload</h2>
+            </div>
+            <div class="contenedor-analisis row">
+                <div class="col-xs-12">
+                    <form action="/file-upload"
+                          class="dropzone drop-zone"
+                          id="my-awesome-dropzone" dropzone="dropzoneConfig">
+                    </form>
+
+                    <div class="col-xs-2">
+                    </div>
+                    <div class="col-xs-4">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div ng-show="stepTwo">
         <div class="titulo-secciones">
