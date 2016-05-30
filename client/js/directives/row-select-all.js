@@ -52,4 +52,4 @@ function rowSelectAll() {
 
 angular
   .module('intellimining')
-  .directive('rowSelectAll', rowSelectAll);
+  .directive('row-select-all', rowSelectAll)

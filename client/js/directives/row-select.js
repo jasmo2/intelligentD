@@ -40,4 +40,4 @@ function rowSelect() {
 
 angular
   .module('intellimining')
-  .directive('rowSelect', rowSelect);
+  .directive('rowSelect', rowSelect)
