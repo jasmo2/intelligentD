@@ -11,12 +11,18 @@ angular.module('intellimining')
                     var selectedVariables = obj.rowCollection.filter(function(rowObj){
                         return ( obj.selectedVariables.indexOf(rowObj['$$hashKey']) == -1 ) ? false:true;
                     });
-                    $http.post('/analysis',selectedVariables)
+                    $http.post('/analysis',{'train_csv': obj.train_csv , 'selectedVariables': selectedVariables})
                     .then(
                         function(response) {
                             callback(response);
                         },
                         function(err){
+                            swal({
+                                title: "Error",
+                                text: err.statusText,
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
                             $log.error(err);
                         }
                     )
