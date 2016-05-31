@@ -3,7 +3,7 @@ angular.module('intellimining')
         function ($rootScope,$scope,$http,$log,Analysis,fileUpload) {
             var printPredictingVariables = function (variables) {
                 var predictingVariables = [];
-                for(var i = 0,l = variables.length; i < l; i+=1){
+                for(var i = 0,l = variables.length; i < l-1; i+=1){
                     var predictionVariable = i < (l-1) ? true : false;
                     predictingVariables.push({is_checked: predictionVariable, selected: predictionVariable, value: "–", label: variables[i]})
                 }
@@ -69,6 +69,8 @@ angular.module('intellimining')
             $scope.chooseVariables = function () {
                 // firstToSecondStep(response.error);
                 if ($scope.selectedVariables.length !== 0){
+                    $scope.train_csv = $rootScope.train_csv;
+
                     Analysis.perform($scope,function () {
 
                         $rootScope.$broadcast('initializePredictionUploader');
