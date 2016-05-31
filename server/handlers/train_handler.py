@@ -8,29 +8,15 @@ import os
 from bson.objectid import ObjectId
 from bson.json_util import dumps, loads
 import pickle
-
 from datamining.datamining import analyse, executeModel
 
 class TrainHandler(tornado.web.RequestHandler):
     def initialize(self, db):
-        """
-        Initializes the instance with a mongodn database instance
-        :param db: an instance to pymongo database object
-        """
         self._db = db
         self._tmp = os.path.dirname(os.path.dirname(os.path.realpath(__file__))) + "/tmp/"
 
     def post(self):
-        """
-        upload train csv
-        # """
-        # train = loads(self.request.body.decode("utf-8"))
-        # if not train['train_csv']:
-        #     self.write(dumps({'status':-1,'error':'name is mandatory'}))
-        #     return
-
         fileinfo = self.request.files['file'][0]
-        # print("fileinfo is", fileinfo)
         fname = fileinfo['filename']
         extn = os.path.splitext(fname)[1]
         cname = str(uuid.uuid4()) + extn
@@ -55,15 +41,11 @@ class TrainHandler(tornado.web.RequestHandler):
         except Exception as e:
             print(e)
             raise tornado.web.HTTPError(500)
-            self.write(dumps({'status': 500
-                                 # , 'error': res['cossvalidation']
-                              }))
 
         print("Train csv uploaded, cname{}".format(cname))
 
     def get_train_csv(self,cname):
         df = pandas.read_csv(self._tmp + cname)
-
         objectCols = []
         myDic = {}
         print(df.columns)
