@@ -4,6 +4,7 @@
 function rowSelectAll() {
 
   return {
+    restrict: 'AC',
     require: '^stTable',
     template: '<input type="checkbox">',
     scope: {
@@ -29,7 +30,6 @@ function rowSelectAll() {
       });
 
       scope.$watchCollection('selected', function(newVal) {
-
         var s = newVal.length;
         var a = scope.all.length;
 
@@ -52,4 +52,4 @@ function rowSelectAll() {
 
 angular
   .module('intellimining')
-  .directive('row-select-all', rowSelectAll)
+  .directive('rowSelectAll', rowSelectAll)
