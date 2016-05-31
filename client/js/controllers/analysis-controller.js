@@ -1,6 +1,6 @@
 angular.module('intellimining')
-    .controller('AnalysisController', ['$rootScope','$scope','$http','$log','fileUpload',
-        function ($rootScope,$scope,$http,$log,fileUpload) {
+    .controller('AnalysisController', ['$rootScope','$scope','$http','$log','Analysis','fileUpload',
+        function ($rootScope,$scope,$http,$log,Analysis,fileUpload) {
             var printPredictingVariables = function (variables) {
                 var predictingVariables = [];
                 for(var i = 0,l = variables.length; i < l; i+=1){
@@ -33,6 +33,17 @@ angular.module('intellimining')
             };
             $scope.selectedVariables= [];
             $scope.rowCollection = [];
+            // Function to get data for individual selected items
+            $scope.select = function(hashKey) {
+               var found = $scope.selectedVariables.indexOf(hashKey);
+                if(found == -1){
+                    $scope.selectedVariables.push(hashKey);
+                }else{
+                    $scope.selectedVariables.splice(found, 1);
+                }
+                $log.log("selectedVariables: "+ $scope.selectedVariables[$scope.selectedVariables.length-1]);
+            };
+
             // Function to get data for all selected items
             $scope.selectAll = function (collection) {
                 // if there are no items in the 'selected' array,
@@ -45,8 +56,8 @@ angular.module('intellimining')
                     // add only those that ar not
                 } else if ($scope['selectedVariables'].length > 0  && $scope['selectedVariables'].length != $scope['variables'].length) {
                     angular.forEach(collection, function(val) {
-                        var found = $scope.selectedVariables.indexOf(val.id);
-                        if(found == -1) $scope.selectedVariables.push(val.id);
+                        var found = $scope.selectedVariables.indexOf(val['$$hashKey']);
+                        if(found == -1) $scope.selectedVariables.push(val['$$hashKey']);
                     });
                     // Otherwise, remove all items
                 } else  {
@@ -55,5 +66,18 @@ angular.module('intellimining')
             };
             // Array Depth copy
             $scope.variables = [].concat($scope.rowCollection);
+            $scope.chooseVariables = function () {
+                // firstToSecondStep(response.error);
+                if ($scope.selectedVariables.length !== 0){
+                    Analysis.perform($scope,function () {
+
+                        $rootScope.$broadcast('initializePredictionUploader');
+                    });
+                }else{
+                    swal("Missing data",
+                        "Choose at least on feature",
+                        "warning")
+                }
+            }
         }]
     );

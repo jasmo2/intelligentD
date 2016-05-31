@@ -18,7 +18,7 @@
   <link rel="apple-touch-icon" sizes="144x144" href="/static/images/favicons/apple-icon-144x144.png">
   <link rel="apple-touch-icon" sizes="152x152" href="/static/images/favicons/apple-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/static/images/favicons/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="/static/images/favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/static/images/favicons/android-icon-192x192.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicons/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicons/favicon-16x16.png">
@@ -36,7 +36,8 @@
   <link href="/static/agency/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+        type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
 
@@ -48,8 +49,8 @@
 
 <body ng-app="intellimining">
 <header class="navbar navbar-default navbar-static-top" role="banner">
-  <div class="container" >
-    <div class="navbar-header" >
+  <div class="container">
+    <div class="navbar-header">
       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -67,7 +68,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">InteliMining <span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">InteliMining
+            <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Cuenta</a></li>
             <li role="separator" class="divider"></li>
@@ -117,6 +119,10 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
+<!-- Sweet Alert -->
+<script src="/static/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/bower_components/sweetalert/dist/sweetalert.css">
+
 <!-- Plugin JavaScript -->
 <script src="/static/bower_components/jquery.easing/js/jquery.easing.min.js"></script>
 <script src="/static/agency/js/classie.js"></script>
@@ -147,7 +153,8 @@
 <!-- App Code and controllers -->
 <script src="/static/js/app.js"></script>
 <script src="/static/js/config.js"></script>
-<script src="/static/js/services.js"></script>
+<script src="/static/js/services/services.js"></script>
+<script src="/static/js/services/analysis.js"></script>
 <script src="/static/js/controllers/steps-controller.js"></script>
 <script src="/static/js/controllers/analysis-controller.js"></script>
 <script src="/static/js/controllers/prediction-controller.js"></script>
@@ -158,4 +165,4 @@
 <script src="/static/js/directives/row-select.js"></script>
 
 </body>
-</html>
+</head></html>

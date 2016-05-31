@@ -58,7 +58,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="variable in variables " >
-                                <td row-select="variable" ng-click="select(variable['$$hashKey']) "></td>
+                                <td  row-select="variable" ng-click="select(variable['$$hashKey']) "></td>
                                 <td>{{$index + 1}}</td>
                                 <td>{{variable.label}}</td>
                                 <td>{{variable.value}}</td>
@@ -116,7 +116,6 @@
             </div>
         </div>
     </div>
-
     <div ng-show="stepThree">
         <div class="titulo-secciones">
             <div class="circuloPaso circulo-en-titulo">
