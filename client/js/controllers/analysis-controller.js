@@ -1,71 +1,59 @@
 angular.module('intellimining')
-
     .controller('AnalysisController', ['$rootScope','$scope','$http','$log','fileUpload',
-            function ($rootScope,$scope,$http,$log,fileUpload) {
-                var printPredictingVariables = function (variables) {
-                        var predictingVariables = [];
-                        for(var i = 0,l = variables.length; i < l; i+=1){
-                            var predictionVariable = i<(l-1)?true:false;
-                            predictingVariables.push({is_checked: predictionVariable, selected: predictionVariable, value: "–", label: variables[i]})
-                        }
-                        $scope.$apply(function () {
-                            $scope['variables'] = predictingVariables;
-                        });
-                    };
-                // "/train_upload"
-                $scope.dropzoneConfig = {
-                    'options': {
-                        'url': 'train_upload',
-                        'acceptedFiles': '.csv',
-                        'dictDefaultMessage': 'Soltar o seleccionar archivo .csv'
+        function ($rootScope,$scope,$http,$log,fileUpload) {
+            var printPredictingVariables = function (variables) {
+                var predictingVariables = [];
+                for(var i = 0,l = variables.length; i < l; i+=1){
+                    var predictionVariable = i < (l-1) ? true : false;
+                    predictingVariables.push({is_checked: predictionVariable, selected: predictionVariable, value: "–", label: variables[i]})
+                }
+                $scope.$apply(function () {
+                    $scope['rowCollection'] = predictingVariables;
+                    $scope['showVariables'] = true;
+                });
+            };
+            // "/train_upload"
+            $scope.dropzoneConfig = {
+                'options': {
+                    'url': 'train_upload',
+                    'acceptedFiles': '.csv',
+                    'dictDefaultMessage': 'Soltar o seleccionar archivo .csv'
+                },
+                'eventHandlers': {
+                    'sending': function(file, xhr, formData) {
+                        $log.info("sending")
                     },
-                    'eventHandlers': {
-                        'sending': function(file, xhr, formData) {
-                            $log.info("sending")
-                        },
-                        'success': function(file, response) {
-                            $rootScope.train_csv = response['train_csv'];
-                            // firstToSecondStep(response.error);
-                            // $rootScope.$broadcast('initializePredictionUploader');
-                            printPredictingVariables(response['variables']);
-                        }
-
+                    'success': function(file, response) {
+                        $rootScope.train_csv = response['train_csv'];
+                        // firstToSecondStep(response.error);
+                        // $rootScope.$broadcast('initializePredictionUploader');
+                        printPredictingVariables(response['variables']);
                     }
-                };
-
-                $scope.selectedVariables= [];
-
-                // Function to get data for all selected items
-                $scope.selectAll = function (collection) {
-
-                    // if there are no items in the 'selected' array, 
-                    // push all elements to 'selected'
-                    if ($scope.selected.length === 0) {
-
-                        angular.forEach(collection, function(val) {
-
-                            $scope.selected.push(val.id);
-
-                        });
-
-                        // if there are items in the 'selected' array, 
-                        // add only those that ar not
-                    } else if ($scope.selected.length > 0 && $scope.selected.length != $scope.data.length) {
-
-                        angular.forEach(collection, function(val) {
-
-                            var found = $scope.selected.indexOf(val.id);
-
-                            if(found == -1) $scope.selected.push(val.id);
-
-                        });
-
-                        // Otherwise, remove all items
-                    } else  {
-                        $scope.selectedVariables= [];
-                    }
-
-                };
-            }
-        ]
+                }
+            };
+            $scope.selectedVariables= [];
+            $scope.rowCollection = [];
+            // Function to get data for all selected items
+            $scope.selectAll = function (collection) {
+                // if there are no items in the 'selected' array,
+                // push all elements to 'selected'
+                if ($scope.selectedVariables.length === 0) {
+                    angular.forEach(collection, function(val) {
+                        $scope.selectedVariables.push(val['$$hashKey']);
+                    });
+                    // if there are items in the 'selectedVariables' array,
+                    // add only those that ar not
+                } else if ($scope['selectedVariables'].length > 0  && $scope['selectedVariables'].length != $scope['variables'].length) {
+                    angular.forEach(collection, function(val) {
+                        var found = $scope.selectedVariables.indexOf(val.id);
+                        if(found == -1) $scope.selectedVariables.push(val.id);
+                    });
+                    // Otherwise, remove all items
+                } else  {
+                    $scope.selectedVariables= [];
+                }
+            };
+            // Array Depth copy
+            $scope.variables = [].concat($scope.rowCollection);
+        }]
     );
