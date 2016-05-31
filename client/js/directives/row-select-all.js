@@ -4,7 +4,7 @@
 function rowSelectAll() {
 
   return {
-    restrict: 'AC',
+    // restrict: 'AC',
     require: '^stTable',
     template: '<input type="checkbox">',
     scope: {
@@ -35,12 +35,12 @@ function rowSelectAll() {
 
         if ((s == a) && s > 0 && a > 0) {
 
-          element.find('input').attr('checked', true);
+          element.find('input')[0].checked =  true
           scope.isAllSelected = false;
 
         } else {
 
-          element.find('input').attr('checked', false);
+           element.find('input')[0].checked =  false;
           scope.isAllSelected = true;
 
         }
@@ -52,4 +52,4 @@ function rowSelectAll() {
 
 angular
   .module('intellimining')
-  .directive('rowSelectAll', rowSelectAll)
+  .directive('rowSelectAll', rowSelectAll);
