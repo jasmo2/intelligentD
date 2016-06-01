@@ -114,6 +114,7 @@ footer{
     padding:5px;
     text-align: center;
     position: relative;
+    cursor: n-resize;
 }
 .titulo-secciones h2{
     margin: 0px!important;

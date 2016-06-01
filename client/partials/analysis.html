@@ -67,22 +67,17 @@
                     </table>
                 </div>
             </div>
-            <div class="titulo-secciones">
+            <div class="titulo-secciones" ng-click="reUploadFile()">
                 <div class="circuloPaso circulo-en-titulo">
                     1
                 </div><h2 class="section-heading titulo-paso">Historical data upload</h2>
             </div>
-            <div class="contenedor-analisis row">
+            <div class="contenedor-analisis row" ng-hide="showVariables">
                 <div class="col-xs-12">
                     <form action="/file-upload"
                           class="dropzone drop-zone"
                           id="my-awesome-dropzone" dropzone="dropzoneConfig">
                     </form>
-
-                    <div class="col-xs-2">
-                    </div>
-                    <div class="col-xs-4">
-                    </div>
                 </div>
             </div>
         </div>

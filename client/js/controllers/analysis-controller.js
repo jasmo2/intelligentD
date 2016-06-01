@@ -12,6 +12,11 @@ angular.module('intellimining')
                     $scope['showVariables'] = true;
                 });
             };
+            $scope.reUploadFile = function () {
+                if($scope['rowCollection'].length !== 0){
+                    $scope['showVariables'] = $scope['showVariables'] ? undefined : true;
+                }
+            };
             // "/train_upload"
             $scope.dropzoneConfig = {
                 'options': {
