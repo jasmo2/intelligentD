@@ -15,6 +15,7 @@ from handlers.index_handler import IndexHandler
 from handlers.train_handler import TrainHandler
 from handlers.prediction_handler import PredictionHandler
 from handlers.test_handler import TestHandler
+from handlers.analysis_handler import AnalysisHandler
 
 
 #adding local directory to path
@@ -71,6 +72,7 @@ app = tornado.web.Application([
     (r'/(favicon.ico)', tornado.web.StaticFileHandler, {"path": ""}),
     (r'/', IndexHandler),
     (r'/train_upload', TrainHandler,dict(db=db)),
+    (r'/analysis', AnalysisHandler,dict(db=db)),
     (r'/prediction_upload', PredictionHandler,dict(db=db)),
     (r'/test', TestHandler)
     #   (r'/prediction_upload', PredictionHandler,dict(db=db))
