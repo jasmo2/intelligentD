@@ -34,7 +34,7 @@ class TrainHandler(tornado.web.RequestHandler):
                         # "myDic": pickle.dumps( myDic)
 
             self.write({'status': 200,
-                        # 'error': res['cossvalidation'],
+                        # 'error': res['crossvalidation'],
                         'train_csv': cname,
                         "variables": df.columns.values.tolist()
                         })

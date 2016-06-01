@@ -42,7 +42,7 @@ class TestHandler(web.RequestHandler):
         #     spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
         #     spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
 
-        # self.write(str(res['cossvalidation']) + str(prediction))
+        # self.write(str(res['crossvalidation']) + str(prediction))
 
         ifile  = open("eggs.csv", "r")
         self.set_header ('Content-Type', 'text/csv')
