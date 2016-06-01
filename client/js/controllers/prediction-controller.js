@@ -4,12 +4,9 @@ angular.module('intellimining')
         function ($rootScope,$scope,$http,$log,fileUpload) {
             var scope = $scope;
             // "/train_upload"
-            scope.$on('initializePredictionUploader',function () {
-                scope.$apply(function () {
-                    scope.train_csv = $rootScope.train_csv;
-                    $log.info("success Upload, scope.train: "+scope.train_csv);
-
-                });
+            $scope.$on('initializePredictionUploader',function () {
+                $scope.train_csv = $rootScope.train_csv;
+                $log.info("success Upload, scope.train: "+$scope.train_csv);
             });
 
             $scope.dropzonePrediction = {

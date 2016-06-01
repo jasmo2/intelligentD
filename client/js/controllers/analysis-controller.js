@@ -71,9 +71,10 @@ angular.module('intellimining')
                 if ($scope.selectedVariables.length !== 0){
                     $scope.train_csv = $rootScope.train_csv;
 
-                    Analysis.perform($scope,function () {
-
-                        $rootScope.$broadcast('initializePredictionUploader');
+                    Analysis.perform($scope,function (response) {
+                        var modelError = response.data.error;
+                        $rootScope.$broadcast('initializePredictionUploader',{'modelError': modelError});
+                        $rootScope.$broadcast('firstToSecondStep',{'modelError': modelError});
                     });
                 }else{
                     swal("Missing data",

@@ -10,13 +10,11 @@ angular.module('intellimining')
                 $scope.stepOne = true ;
                 $scope.stepTwo = false;
                 $scope.step_three = false;
-                var firstToSecondStep = function (modelError) {
-                    $scope.$apply(function () {
-                        $scope.stepOne = false;
-                        $scope.stepTwo = true;
-                        $scope.modelError = Math.floor(modelError*100);
-                    });
-                };
+                $scope.$on('firstToSecondStep',function (event, args) {
+                    $scope.stepOne = false;
+                    $scope.stepTwo = true;
+                    $scope.modelError = Math.floor(args.modelError*100);
+                });
                 $scope.$on('finalStep',function (event, args) {
                     $scope.$apply(function () {
                         $scope.stepOne = false;

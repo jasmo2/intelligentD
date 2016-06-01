@@ -19,6 +19,7 @@ angular.module('intellimining')
                         function(err){
                             swal({
                                 title: "Error",
+                                type: "error",
                                 text: err.statusText,
                                 timer: 2000,
                                 showConfirmButton: false
