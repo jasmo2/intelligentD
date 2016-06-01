@@ -43,7 +43,7 @@ class PredictionHandler(tornado.web.RequestHandler):
             myToInt = lambda x:myDic[index][x]
             df[df.columns[index]] = df[df.columns[index]].map(myToInt)
 
-        X = df.ix[:, 1:(len(df.columns))].as_matrix()
+        X = df.ix[:, 0:(len(df.columns))].as_matrix()
 
         prediction = executeModel(cursor['model'], X)
 
