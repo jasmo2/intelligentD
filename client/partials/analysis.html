@@ -112,21 +112,23 @@
         </div>
     </div>
     <div ng-show="stepThree">
-        <div class="titulo-secciones">
-            <div class="circuloPaso circulo-en-titulo">
-                3
+        <div ng-controller="ResultsController">
+            <div class="titulo-secciones">
+                <div class="circuloPaso circulo-en-titulo">
+                    3
+                </div>
+                <h2 class="section-heading titulo-paso">Prediction Results</h2>
             </div>
-            <h2 class="section-heading titulo-paso">Prediction Results</h2>
-        </div>
-        <div class="modeloListo">
-            <div class="items">Model ready <span class="glyphicon glyphicon-ok modelo-listo" aria-hidden="true"></span></div>
-            <div class="items">Process data <span class="glyphicon glyphicon-ok modelo-listo" aria-hidden="true"></span></div>
-            <a href="/prediction_upload" class="btn btn-success btn-lg btn-descargar">Download</a>
-        </div>
+            <div class="modeloListo">
+                <div class="items">Model ready <span class="glyphicon glyphicon-ok modelo-listo" aria-hidden="true"></span></div>
+                <div class="items">Process data <span class="glyphicon glyphicon-ok modelo-listo" aria-hidden="true"></span></div>
+                <button ng-click="getPredictionFile()" href="/prediction_upload" class="btn btn-success btn-lg btn-descargar">Download</button>
+            </div>
 
-        <div class="contenedor-analisis row">
-            <div class="col-xs-12">
-                <div class="col-xs-12 contenedor-grafica-resultado">
+            <div class="contenedor-analisis row">
+                <div class="col-xs-12">
+                    <div class="col-xs-12 contenedor-grafica-resultado">
+                    </div>
                 </div>
             </div>
         </div>

@@ -50,14 +50,15 @@ class PredictionHandler(tornado.web.RequestHandler):
         dataf = pandas.DataFrame(data=prediction, columns=["Target"])
         df = self.revertToDefaultValues(df,myDic)
         df["Target"] = dataf["Target"]
-        df.to_csv(self._tmp + 'prediction_{}.csv'.format(ObjectId()))
-        # confution_matix = dm.confution_matix()
+        prediction_csv = self._tmp + 'prediction_{}.csv'.format(ObjectId())
+        df.to_csv(prediction_csv)
+        confution_matix = dm.confution_matix()
 
 
         try:
             self._db['decision'].update_one({"train_csv": analysisCSV},
                                             {
-                                                "$set": {"prediction_csv": cname}
+                                                "$set": {"prediction_csv": prediction_csv}
                                             }, upsert=True)
             self.write(df.to_json())
         except Exception as e:
@@ -70,6 +71,7 @@ class PredictionHandler(tornado.web.RequestHandler):
         """
         upload prediction csv
         """
+        None
         analysisCSV = self.get_argument('trainCsv')
         cursor = self._db['decision'].find_one({"train_csv": analysisCSV})
         prediction_csv = cursor['prediction_csv']
@@ -77,7 +79,7 @@ class PredictionHandler(tornado.web.RequestHandler):
         self.set_header ('Content-Type', 'text/csv')
         self.set_header ('Content-Disposition', 'attachment; filename='+"prediction.csv"+'')
         self.write(ifile.read())
-
+        ifile.close()
     def revertToDefaultValues(self,df,myDic):
         for index in myDic:
             def getKey(valToevaluate):
