@@ -8,7 +8,7 @@ from bson.objectid import ObjectId
 from bson.json_util import dumps, loads
 import pickle
 
-from datamining.datamining import analyse, executeModel
+from datamining.datamining import DataMinning
 
 class AnalysisHandler(tornado.web.RequestHandler):
     def initialize(self, db):
@@ -56,8 +56,9 @@ class AnalysisHandler(tornado.web.RequestHandler):
         y = y.transpose()
         print(X)
         print(y[0])
-        res = analyse(X, y[0])
-        prediction = executeModel(res['modelo'], X[1:2])
+        dm = DataMinning()
+        res = dm.analyse(X, y[0])
+        prediction = dm.executeModel(res['modelo'], X[1:2])
         print("pred>" + str(prediction))
 
         try:

@@ -5,10 +5,11 @@ import tornado
 import pandas
 import os
 import uuid
+import time
 from bson.objectid import ObjectId
 from bson.json_util import dumps, loads
 from slugify import slugify
-from datamining.datamining import analyse, executeModel
+from datamining.datamining import DataMinning
 import pickle
 
 class PredictionHandler(tornado.web.RequestHandler):
@@ -44,19 +45,20 @@ class PredictionHandler(tornado.web.RequestHandler):
             df[df.columns[index]] = df[df.columns[index]].map(myToInt)
 
         X = df.ix[:, 0:(len(df.columns))].as_matrix()
-
-        prediction = executeModel(cursor['model'], X)
-
+        dm = DataMinning()
+        prediction = dm.executeModel(cursor['model'], X)
         dataf = pandas.DataFrame(data=prediction, columns=["Target"])
         df = self.revertToDefaultValues(df,myDic)
         df["Target"] = dataf["Target"]
-        df.to_csv('predictions.csv')
-        # dataf.to_csv('predictions.csv')
-
+        df.to_csv(self._tmp + 'prediction_{}.csv'.format(ObjectId()))
+        # confution_matix = dm.confution_matix()
 
 
         try:
-            self._db['decision'].insert({"prediction_csv": cname})
+            self._db['decision'].update_one({"train_csv": analysisCSV},
+                                            {
+                                                "$set": {"prediction_csv": cname}
+                                            }, upsert=True)
             self.write(df.to_json())
         except Exception as e:
             raise tornado.web.HTTPError(500)
@@ -68,7 +70,10 @@ class PredictionHandler(tornado.web.RequestHandler):
         """
         upload prediction csv
         """
-        ifile  = open("predictions.csv", "r")
+        analysisCSV = self.get_argument('trainCsv')
+        cursor = self._db['decision'].find_one({"train_csv": analysisCSV})
+        prediction_csv = cursor['prediction_csv']
+        ifile  = open(prediction_csv, "r")
         self.set_header ('Content-Type', 'text/csv')
         self.set_header ('Content-Disposition', 'attachment; filename='+"prediction.csv"+'')
         self.write(ifile.read())

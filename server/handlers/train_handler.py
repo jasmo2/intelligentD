@@ -8,7 +8,7 @@ import os
 from bson.objectid import ObjectId
 from bson.json_util import dumps, loads
 import pickle
-from datamining.datamining import analyse, executeModel
+from datamining.datamining import DataMinning
 
 class TrainHandler(tornado.web.RequestHandler):
     def initialize(self, db):
@@ -66,8 +66,8 @@ class TrainHandler(tornado.web.RequestHandler):
         X = df.ix[:, 1:(len(df.columns) - 1)].as_matrix()
         y = df.ix[:, (len(df.columns) - 1):len(df.columns)].as_matrix()
         y = y.transpose()
-
-        result = analyse(X, y[0])
-        prediction = executeModel(result['modelo'], X[1:2])
+        dm = DataMinning()
+        result = dm.analyse(X, y[0])
+        prediction = dm.executeModel(result['modelo'], X[1:2])
         print("pred>" + str(prediction))
         return prediction
