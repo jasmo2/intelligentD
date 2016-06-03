@@ -52,17 +52,22 @@ class PredictionHandler(tornado.web.RequestHandler):
         df["Target"] = dataf["Target"]
         prediction_csv = self._tmp + 'prediction_{}.csv'.format(ObjectId())
         df.to_csv(prediction_csv)
-        train_file  = open(self._tmp + cursor['train_csv'], "r")
-        pd_train = pandas.read_csv(train_file)
-        y = pd_train.iloc[:, (len(df.columns) - 1):len(pd_train.columns)].as_matrix()
-        confution_matix = dm.confusion_matrix(y,dataf["Target"].as_matrix(), myDic)
+
+        pd_train = pandas.read_csv(self._tmp + cursor['train_csv'])
+        #FixMe, y should have the same lenght as dataf["Target"]
+        y = pd_train.iloc[:, (len(pd_train.columns) - 1):len(pd_train.columns)].as_matrix()
+        y_pred = dataf["Target"].as_matrix()
+        json_confusion_matrix = dm.json_confusion_matrix(y[0:len(y_pred)], y_pred )
 
         try:
             self._db['decision'].update_one({"train_csv": analysisCSV},
                                             {
-                                                "$set": {"prediction_csv": prediction_csv}
+                                                "$set": {
+                                                    "prediction_csv": prediction_csv,
+                                                    "confusion_matrix": json_confusion_matrix
+                                                }
                                             }, upsert=True)
-            self.write(df.to_json())
+            self.write({"dataframe": df.to_json(),"confusion_matrix": json_confusion_matrix})
         except Exception as e:
             raise tornado.web.HTTPError(500)
             self.write(dumps({'status': 500, 'error': str(e)}))
