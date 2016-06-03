@@ -3,8 +3,9 @@
  */
 angular.module('intellimining')
 
-    .controller('ResultsController', ['$rootScope','$scope','$http','$log','fileUpload',
-            function ($rootScope,$scope,$http,$log,fileUpload) {
+    .controller('ResultsController', ['$rootScope','$scope','$http','$log',
+            function ($rootScope,$scope,$http,$log) {
+                $scope.templateState = false;
                 $scope.getPredictionFile = function () {
                     $http({method: 'GET', url: '/prediction_upload', params:{"trainCsv": $rootScope.train_csv}})
                         .then(function(response) {
@@ -26,6 +27,12 @@ angular.module('intellimining')
                             }
                         );
                 };
+                 $scope.$on('finalStep',function (event, args) {
+                    $scope.$apply(function () {
+                        $scope.templateState = true;
+                        $scope.confusion_matrix = $rootScope.confusion_matrix;
+                    });
+                });
             }
         ]
     );

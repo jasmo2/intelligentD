@@ -126,9 +126,8 @@
             </div>
 
             <div class="contenedor-analisis row">
-                <div class="col-xs-12">
-                    <div class="col-xs-12 contenedor-grafica-resultado">
-                    </div>
+                <div class="col-xs-12" ng-if="templateState">
+                    <confusion-matrix matrix="">  </confusion-matrix>
                 </div>
             </div>
         </div>

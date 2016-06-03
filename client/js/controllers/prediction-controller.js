@@ -21,6 +21,8 @@ angular.module('intellimining')
                                 $log.info("sending")
                             },
                             'success': function(file, response) {
+                              $rootScope.confusion_matrix = response['confusion_matrix'];
+                              
                               $rootScope.$broadcast('finalStep',{data: response});
                               $log.info("success Prediction")
                             }
