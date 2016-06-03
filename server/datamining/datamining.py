@@ -13,7 +13,7 @@ class DataMinning:
         #CROSS VALIDATION
         #Stratified sampling
         kfold = cross_validation.StratifiedKFold(y, n_folds=3, shuffle=False, random_state=None)
-        cross = [clf.fit(X[train], y[train]).score(X[test], y[test])
+        cross = [clf.fit(X[train], y[train]).score(X[test], y[test]) \
         for train, test in kfold]
 
         results = {"crossvalidation": np.mean(cross), "modelo": pickle.dumps(clf)}
@@ -24,6 +24,9 @@ class DataMinning:
         clf2 = pickle.loads(model)
         return clf2.predict(X)
 
-    def confution_matrix(self):
+    def confusion_matrix(self,y_true,y_pred, myDic):
 
+        # y_true = [2, 0, 2, 2, 0, 1]
+        # y_pred = [0, 0, 2, 2, 0, 2]
+        cm = confusion_matrix(y_true, y_pred)
         raise NotImplemented

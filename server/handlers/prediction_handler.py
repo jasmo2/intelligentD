@@ -52,8 +52,10 @@ class PredictionHandler(tornado.web.RequestHandler):
         df["Target"] = dataf["Target"]
         prediction_csv = self._tmp + 'prediction_{}.csv'.format(ObjectId())
         df.to_csv(prediction_csv)
-        confution_matix = dm.confution_matix()
-
+        train_file  = open(self._tmp + cursor['train_csv'], "r")
+        pd_train = pandas.read_csv(train_file)
+        y = pd_train.iloc[:, (len(df.columns) - 1):len(pd_train.columns)].as_matrix()
+        confution_matix = dm.confusion_matrix(y,dataf["Target"].as_matrix(), myDic)
 
         try:
             self._db['decision'].update_one({"train_csv": analysisCSV},
@@ -71,7 +73,6 @@ class PredictionHandler(tornado.web.RequestHandler):
         """
         upload prediction csv
         """
-        None
         analysisCSV = self.get_argument('trainCsv')
         cursor = self._db['decision'].find_one({"train_csv": analysisCSV})
         prediction_csv = cursor['prediction_csv']
@@ -80,6 +81,7 @@ class PredictionHandler(tornado.web.RequestHandler):
         self.set_header ('Content-Disposition', 'attachment; filename='+"prediction.csv"+'')
         self.write(ifile.read())
         ifile.close()
+
     def revertToDefaultValues(self,df,myDic):
         for index in myDic:
             def getKey(valToevaluate):
