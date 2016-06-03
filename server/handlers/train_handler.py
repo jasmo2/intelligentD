@@ -17,9 +17,7 @@ class TrainHandler(tornado.web.RequestHandler):
 
     def post(self):
         fileinfo = self.request.files['file'][0]
-        fname = fileinfo['filename']
-        extn = os.path.splitext(fname)[1]
-        cname = str(uuid.uuid4()) + extn
+        cname = 'train_{}.csv'.format(ObjectId())
         fh = open(self._tmp + cname, 'wb')
         fh.write(fileinfo['body'])
         fh.close()
