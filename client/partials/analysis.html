@@ -57,12 +57,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="variable in variables " >
-                                <td  row-select="variable" ng-click="select(variable['$$hashKey']) "></td>
-                                <td>{{$index + 1}}</td>
-                                <td>{{variable.label}}</td>
-                                <td>{{variable.value}}</td>
-                            </tr>
+                        <tr ng-repeat="variable in variables " >
+                            <td  row-select="variable" ng-click="select(variable['$$hashKey']) "></td>
+                            <td>{{$index + 1}}</td>
+                            <td>{{variable.label}}</td>
+                            <td>{{variable.value}}</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -127,7 +127,11 @@
 
             <div class="contenedor-analisis row">
                 <div class="col-xs-12" ng-if="templateState">
-                    <confusion-matrix matrix="">  </confusion-matrix>
+                       <span ng-repeat="row in confusion_matrix track by $index"><br>
+                          <span ng-repeat="element in row track by $index">
+                            <textarea style="resize: none;" ng-model="confusion_matrix[$parent.$index][$index]" rows="1" cols="4" disabled></textarea>
+                      </span>
+                  </span>
                 </div>
             </div>
         </div>
