@@ -1,6 +1,7 @@
 from sklearn import tree
 from sklearn import cross_validation
 from sklearn.metrics import confusion_matrix
+import pandas as pd
 import numpy as np
 import pickle
 # X: atributos, debe ser numpyarray
@@ -23,10 +24,17 @@ class DataMinning:
         clf2 = pickle.loads(model)
         return clf2.predict(X)
 
-    def json_confusion_matrix(self,y_true,y_pred):
+    def json_confusion_matrix(self,y_true,y_pred,myDic):
 
         # y_true = [2, 0, 2, 2, 0, 1]
         # y_pred = [0, 0, 2, 2, 0, 2]
         cm = confusion_matrix(y_true, y_pred)
+        cm = cm.tolist()
         print("Confusion Matrix\n{}".format(cm))
-        return cm.tolist()
+        # df = pd.DataFrame(data=cm,index=myDic[:],columns=myDic[:])
+        myDic = myDic.tolist()
+        for index,row in enumerate(cm):
+            row.insert(0,myDic[index])
+        myDic.insert(0, "––––")
+        cm.insert(0,myDic)
+        return cm

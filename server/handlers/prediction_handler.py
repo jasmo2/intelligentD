@@ -57,7 +57,8 @@ class PredictionHandler(tornado.web.RequestHandler):
         #FixMe, y should have the same lenght as dataf["Target"]
         y = pd_train.iloc[:, (len(pd_train.columns) - 1):len(pd_train.columns)].as_matrix()
         y_pred = dataf["Target"].as_matrix()
-        json_confusion_matrix = dm.json_confusion_matrix(y[0:len(y_pred)], y_pred )
+
+        json_confusion_matrix = dm.json_confusion_matrix(y[0:len(y_pred)], y_pred , dataf["Target"].unique())
 
         try:
             self._db['decision'].update_one({"train_csv": analysisCSV},
@@ -72,7 +73,7 @@ class PredictionHandler(tornado.web.RequestHandler):
             raise tornado.web.HTTPError(500)
             self.write(dumps({'status': 500, 'error': str(e)}))
 
-        print("Prediction csv uploaded, cname{}".format(cname))
+        # print("Prediction csv uploaded, cname{}".format(cname))
 
     def get(self):
         """
